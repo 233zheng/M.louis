@@ -8,8 +8,11 @@ local KeyHandler = Class(function(self, inst)
 	self.ignore_ = false
 	self.ignore_event = net_event(self.inst.GUID, "ignore")
 	self.handler = TheInput:AddKeyHandler(function(key, down) self:OnRawKey(key, down) end )
-	
-	self.inst:ListenForEvent( "gamepaused", function(inst, paused) self.paused = paused end )
+
+	self.inst:ListenForEvent( "gamepaused", function(inst, paused)
+        self.paused = paused
+    end)
+
 	self.inst:ListenForEvent( "ignore", function(inst)
 		ignore( inst.components.keyhandler )
 	end)
@@ -45,7 +48,7 @@ function KeyHandler:AddActionListener(Namespace, Key, Action, Event)
 						SendModRPCToServer( MOD_RPC[Namespace][Action] )
 					end
 				end
-			end	
+			end
 		end)
 	elseif Event ~= nil then
 		self.inst:ListenForEvent(string.lower(Event), function(inst, data)
@@ -57,7 +60,7 @@ function KeyHandler:AddActionListener(Namespace, Key, Action, Event)
 						SendModRPCToServer( MOD_RPC[Namespace][Action] )
 					end
 				end
-			end	
+			end
 		end)
 	end
 
@@ -68,7 +71,7 @@ function KeyHandler:AddActionListener(Namespace, Key, Action, Event)
 			end
 
           		data.Fn(inst)
-		end, self.inst) 
+		end, self.inst)
 	end
 end
 

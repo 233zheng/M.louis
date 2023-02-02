@@ -4,23 +4,11 @@ local PREFAB_SKINS = _G.PREFAB_SKINS
 local PREFAB_SKINS_IDS = _G.PREFAB_SKINS_IDS
 local SKIN_AFFINITY_INFO = GLOBAL.require("skin_affinity_info")
 local STRINGS = GLOBAL.STRINGS
+local modimport = modimport
 
 modimport("ManutsaweeSkins_api")
 
 SKIN_AFFINITY_INFO.manutsawee = {
-	"manutsawee_yukata",
-	"manutsawee_yukatalong", 
-	"manutsawee_fuka", 
-	"manutsawee_maid", 
-	"manutsawee_shinsengumi",
-	"manutsawee_jinbei",
-	"manutsawee_miko",
-	"manutsawee_qipao",
-	"manutsawee_sailor",
-}
-
-PREFAB_SKINS["manutsawee"] = {
-	"manutsawee_none", 	
 	"manutsawee_yukata",
 	"manutsawee_yukatalong",
 	"manutsawee_fuka",
@@ -30,10 +18,24 @@ PREFAB_SKINS["manutsawee"] = {
 	"manutsawee_miko",
 	"manutsawee_qipao",
 	"manutsawee_sailor",
-} 
+    "manutsawee_taohuu"
+}
 
+PREFAB_SKINS["manutsawee"] = {
+	"manutsawee_none",
+	"manutsawee_yukata",
+	"manutsawee_yukatalong",
+	"manutsawee_fuka",
+	"manutsawee_maid",
+	"manutsawee_shinsengumi",
+	"manutsawee_jinbei",
+	"manutsawee_miko",
+	"manutsawee_qipao",
+	"manutsawee_sailor",
+    "manutsawee_taohuu"
+}
 
-PREFAB_SKINS_IDS = {} 
+PREFAB_SKINS_IDS = {}
 for prefab,skins in pairs(PREFAB_SKINS) do
     PREFAB_SKINS_IDS[prefab] = {}
     for k,v in pairs(skins) do
@@ -41,7 +43,7 @@ for prefab,skins in pairs(PREFAB_SKINS) do
     end
 end
 
-AddSkinnableCharacter("manutsawee") 
+AddSkinnableCharacter("manutsawee")
 
 --Skin STRINGS
 STRINGS.SKIN_NAMES.manutsawee_none = "Louis"
@@ -83,3 +85,7 @@ STRINGS.SKIN_DESCRIPTIONS.manutsawee_shinsengumi = "Laws of the Shinsengumi\nOne
 STRINGS.SKIN_NAMES.manutsawee_jinbei = "Louis Jinbei"
 STRINGS.SKIN_QUOTES.manutsawee_jinbei = "\"Relax Feeling good.\""
 STRINGS.SKIN_DESCRIPTIONS.manutsawee_jinbei = "Japan's outfit."
+--taohuu
+STRINGS.SKIN_NAMES.manutsawee_taohuu = "Louis Taohuu"
+STRINGS.SKIN_QUOTES.manutsawee_taohuu = "\"I'm cute, please give me money.\""
+STRINGS.SKIN_DESCRIPTIONS.manutsawee_taohuu = "Taohuu"

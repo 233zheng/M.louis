@@ -25,7 +25,7 @@ end
 
 AddClassPostConstructBefore("widgets/redux/loadoutselect", function(self)
 	local _OldLoadSavedSkins = self._LoadSavedSkins
-	
+
 	function self:_LoadSavedSkins(...)
 		if SKINNABLE_CHARACTERS[self.currentcharacter] then
 			self.have_base_option = true --Hornet: We do a nice little hijack here
@@ -73,12 +73,12 @@ AddClassPostConstruct("screens/redux/wardrobepopupgridloadout", function(self)
 			if not IsValidClothing( data.hand ) or not TheInventory:CheckOwnership(data["hand"]) then data.hand = "" end
 			if not IsValidClothing( data.legs ) or not TheInventory:CheckOwnership(data["legs"]) then data.legs = "" end
 			if not IsValidClothing( data.feet ) or not TheInventory:CheckOwnership(data["feet"]) then data.feet = "" end
-			
+
 			GLOBAL.POPUPS.WARDROBE:Close(self.owner_player, data.base, data.body, data.hand, data.legs, data.feet)
-			
+
 			self.timestamp = self:GetTimestamp()
 			self.profile:SetCollectionTimestamp(self.timestamp)
-			
+
 			_G.TheFrontEnd:PopScreen(self)
 		else
 			_Close(self, ...)
@@ -91,7 +91,7 @@ AddClassPostConstruct("screens/redux/skinpresetspopup", function(self) --For the
 	local Widget = require "widgets/widget"
 	local TEMPLATES = require "widgets/redux/templates"
 	local AccountItemFrame = require "widgets/redux/accountitemframe"
-	
+
 	local scroll_height = 460
     local content_width = 390
     local item_height = 60
@@ -100,107 +100,107 @@ AddClassPostConstruct("screens/redux/skinpresetspopup", function(self) --For the
 		if self.scroll_list then
 			self.scroll_list:Hide() --ew
 		end
-		
+
 		local function ScrollWidgetsCtor(context, i)
 			local item = Widget("item-"..i)
 			item.root = item:AddChild(Widget("root"))
-		
+
 			item.row_label = item.root:AddChild(Text(_G.BODYTEXTFONT, 28))
 			item.row_label:SetColour(_G.UICOLOURS.IVORY)
 			item.row_label:SetHAlign(_G.ANCHOR_RIGHT)
-		
+
 			local x_start = -170
 			local x_step = 50
-		
+
 			item.base_icon = item.root:AddChild( AccountItemFrame() )
 			item.base_icon:SetStyle_Normal()
 			item.base_icon:SetScale(0.4)
 			item.base_icon:SetPosition(x_start + 0 * x_step,0)
-				
+
 			item.row_label:SetPosition(-210,-1)
 			item.root:SetPosition(20,0)
-		
+
 			item.body_icon = item.root:AddChild( AccountItemFrame() )
 			item.body_icon:SetStyle_Normal()
 			item.body_icon:SetScale(0.4)
 			item.body_icon:SetPosition(x_start + 1 * x_step,0)
-		
+
 			item.hand_icon = item.root:AddChild( AccountItemFrame() )
 			item.hand_icon:SetStyle_Normal()
 			item.hand_icon:SetScale(0.4)
 			item.hand_icon:SetPosition(x_start + 2 * x_step,0)
-		
+
 			item.legs_icon = item.root:AddChild( AccountItemFrame() )
 			item.legs_icon:SetStyle_Normal()
 			item.legs_icon:SetScale(0.4)
 			item.legs_icon:SetPosition(x_start + 3 * x_step,0)
-		
+
 			item.feet_icon = item.root:AddChild( AccountItemFrame() )
 			item.feet_icon:SetStyle_Normal()
 			item.feet_icon:SetScale(0.4)
 			item.feet_icon:SetPosition(x_start + 4 * x_step,0)
-		
-		
+
+
 			item.load_btn = item.root:AddChild(TEMPLATES.IconButton("images/button_icons.xml", "apply_skins.tex", nil, nil, nil, function(a) self:_LoadPreset(item.i) end, _G.STRINGS.UI.SKIN_PRESETS.LOAD))
 			item.load_btn:SetPosition(105,-1)
 			item.load_btn:SetScale(0.7)
-		
+
 			item.save_btn = item.root:AddChild(TEMPLATES.IconButton("images/button_icons.xml", "save.tex", nil, nil, nil, function() self:_SetPreset(item.i) end, _G.STRINGS.UI.SKIN_PRESETS.SAVE))
 			item.save_btn:SetPosition(155,-1)
 			item.save_btn:SetScale(0.7)
-		
+
 			item.load_btn:SetFocusChangeDir(_G.MOVE_RIGHT, item.save_btn)
 			item.save_btn:SetFocusChangeDir(_G.MOVE_LEFT, item.load_btn)
-		
+
 			item.focus_forward = item.load_btn
-		
+
 			item:SetOnGainFocus(function()
 				self.scroll_list:OnWidgetFocus(item)
 			end)
-		
+
 			return item
 		end
 		local function ScrollWidgetApply(context, item, data, index)
-			if data then            
+			if data then
 				item.i = index
 				item.row_label:SetString(tostring(index)..":")
-		
+
 				if data.base then
 					item.base_icon:SetItem(data.base)
-				else      
+				else
 					item.base_icon:SetItem(self.character.."_none")
 				end
-		
+
 				if data.body then
 					item.body_icon:SetItem(data.body)
 				else
 					item.body_icon:SetItem("body_default1")
 				end
-		
+
 				if data.hand then
 					item.hand_icon:SetItem(data.hand)
 				else
 					item.hand_icon:SetItem("hand_default1" )
 				end
-		
+
 				if data.legs then
 					item.legs_icon:SetItem(data.legs)
 				else
 					item.legs_icon:SetItem("legs_default1")
 				end
-		
+
 				if data.feet then
 					item.feet_icon:SetItem(data.feet)
 				else
 					item.feet_icon:SetItem("feet_default1")
 				end
-		
+
 				item.root:Show()
 			else
 				item.root:Hide()
 			end
 		end
-		
+
 		self.scroll_list = self.proot:AddChild(
 			TEMPLATES.ScrollingGrid(
 				self.list_items,
@@ -216,11 +216,11 @@ AddClassPostConstruct("screens/redux/skinpresetspopup", function(self) --For the
 				}
 			))
 		self.scroll_list:SetPosition(0, 30)
-		
+
 		self.scroll_list:SetFocusChangeDir(_G.MOVE_DOWN, self.dialog.actions)
 		self.scroll_list:SetFocusChangeDir(_G.MOVE_RIGHT, self.dialog.actions)
 		self.dialog.actions:SetFocusChangeDir(_G.MOVE_UP, self.scroll_list)
-		
+
 		self.default_focus = self.scroll_list
 	end
 end)
@@ -247,7 +247,7 @@ function _G.IsDefaultSkinOwned(item_key, ...)
 	if SKINNABLE_CHARACTERS[character] then
 		return true
 	end
-	
+
 	return _IsDefaultSkinOwned(item_key, ...)
 end
 
@@ -257,9 +257,9 @@ function _G.ValidateItemsLocal(currentcharacter, selected_skins)
 	local _base = selected_skins["base"]
 
 	_ValidateItemsLocal(currentcharacter, selected_skins)
-	
+
 	if _base ~= nil and SKINNABLE_CHARACTERS[currentcharacter] then
-		selected_skins["base"] = _base 
+		selected_skins["base"] = _base
 	end
 end
 
@@ -271,10 +271,10 @@ function _G.GetLockedSkinFilter()
 		if SKINNABLE_CHARACTERS[character] then
 			return true
 		end
-		
+
 		return _LockedFilter(item_key)
 	end
-	
+
 	return LockedFilter
 end
 

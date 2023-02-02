@@ -65,7 +65,7 @@ return{
 			KITCOON_HIDEANDSEEK_NOT_ENOUGH_HIDING_SPOTS = "There aren't a lot of places around for them to hide.",
 			KITCOON_HIDEANDSEEK_ONE_GAME_PER_DAY = "I think that's enough for one day.",
 		},
-		OPEN_CRAFTING = 
+		OPEN_CRAFTING =
 		{
             PROFESSIONALCHEF = "I'm not THAT good at cooking.",
 			SHADOWMAGIC = "Magic?",
@@ -319,11 +319,11 @@ return{
 --fallback to speech_wilson.lua             FROZEN = "only_used_by_webber",
 --fallback to speech_wilson.lua             ALREADY_BEDAZZLED = "only_used_by_webber",
         },
-        UPGRADE = 
+        UPGRADE =
         {
 --fallback to speech_wilson.lua             BEDAZZLED = "only_used_by_webber",
         },
-		CAST_POCKETWATCH = 
+		CAST_POCKETWATCH =
 		{
 --fallback to speech_wilson.lua 			GENERIC = "only_used_by_wanda",
 --fallback to speech_wilson.lua 			REVIVE_FAILED = "only_used_by_wanda",
@@ -738,10 +738,10 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         "Anything interesting going on lately? Right, nope. Because you're a plant.",
         "You are a very good plant.",
 	},
-	
+
 	ANNOUNCE_KITCOON_HIDEANDSEEK_START = "3, 2, 1... Ready or not, here I come!",
 	ANNOUNCE_KITCOON_HIDEANDSEEK_JOIN = "Aww, they're playing hide and seek.",
-	ANNOUNCE_KITCOON_HIDANDSEEK_FOUND = 
+	ANNOUNCE_KITCOON_HIDANDSEEK_FOUND =
 	{
 		"Found you!",
 		"There you are.",
@@ -765,17 +765,17 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 	ANNOUNCE_TICOON_LOST_KITCOON = "Looks like someone else found what he was looking for.",
 	ANNOUNCE_TICOON_ABANDONED = "I'll find those little guys on my own.",
 	ANNOUNCE_TICOON_DEAD = "Poor guy... Now where was he leading me?",
-	
+
     -- YOTB
     ANNOUNCE_CALL_BEEF = "Hey beefalo! Get over here!",
     ANNOUNCE_CANTBUILDHERE_YOTB_POST = "How would the judge even see my beefalo this far away?",
     ANNOUNCE_YOTB_LEARN_NEW_PATTERN =  "I think I could make a new beefalo costume now.",
-	
+
 	 -- AE4AE
     ANNOUNCE_EYEOFTERROR_ARRIVE = "What is that- a giant floating eyeball?!",
     ANNOUNCE_EYEOFTERROR_FLYBACK = "Finally!",
     ANNOUNCE_EYEOFTERROR_FLYAWAY = "Get back here, I'm not finished with you yet!",
-	
+
 	-- PIRATES
     ANNOUNCE_CANT_ESCAPE_CURSE = "Wait, what's this doing back in my pocket? Didn't I just...?",
     ANNOUNCE_MONKEY_CURSE_1 = "Brrr, what was that? I just got goosebumps.",
@@ -783,13 +783,13 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
     ANNOUNCE_MONKEY_CURSE_CHANGEBACK = "Ugh, I still feel itchy all over...",
 
     ANNOUNCE_PIRATES_ARRIVE = "Uh, that sound's getting closer...",
-	
+
 		BATTLECRY =
 	{
-		GENERIC = "Hah!",		
-		PIG = {"Buu.. Buu...","Here Piggy Piggy!"},		
-		PREY = "Hmm...",		
-		FROG = {"I don't like you!","Ob.. Obb?"},		
+		GENERIC = "Hah!",
+		PIG = {"Buu.. Buu...","Here Piggy Piggy!"},
+		PREY = "Hmm...",
+		FROG = {"I don't like you!","Ob.. Obb?"},
 		SPIDER = "You'd better back off!",
 		SPIDER_WARRIOR = "You'd better back off!",
 		DEER = "Your soul is mine!",
@@ -1044,15 +1044,15 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
             GHOST = "Uh... I'm guessing something went wrong.",
             FIRESTARTER = "Stop it, %s! You're gonna get in trouble!",
         },
-		
+
 		 WONKEY =
         {
             GENERIC = "I swear this monkey's following me.",
             ATTACKER = "Careful, I think it's rabid!",
             MURDERER = "That thing's dangerous! Burn it!",
             REVIVER = "You're pretty smart for a stinky monkey.",
-            GHOST = "What happened? Did you fall out of a tree?", 
-            FIRESTARTER = "Heh. Good monkey.",  
+            GHOST = "What happened? Did you fall out of a tree?",
+            FIRESTARTER = "Heh. Good monkey.",
         },
 
 --fallback to speech_wilson.lua         MIGRATION_PORTAL =
@@ -2517,7 +2517,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 		},
 		TREECLUMP = "Moooooooooooooove.", --removed
 
-		
+
 		TRINKET_1 = "We could still play with these, if we're extra creative.", --Melted Marbles
 		TRINKET_2 = "A voiceless instrument.", --Fake Kazoo
 		TRINKET_3 = "It won't come undone!", --Gord's Knot
@@ -3813,8 +3813,6 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
         MUSHTREE_MOON = "This mushroom tree is clearly stranger than the rest.",
 
-        LIGHTFLIER = "How strange, carrying one makes my pocket feel lighter!",
-
         GROTTO_POOL_BIG = "Ugh, this whole place is damp and gross! I hate it!",
         GROTTO_POOL_SMALL = "Ugh, this whole place is damp and gross! I hate it!",
 
@@ -4128,9 +4126,9 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         BEAST_BLUEPRINT = "My beefalo's already a lucky beast. He gets to be my friend!",
 
         BEEF_BELL = "Wow, making friends is easy!",
-		
+
 		-- YOT Catcoon
-		KITCOONDEN = 
+		KITCOONDEN =
 		{
 			GENERIC = "You'd have to be pretty small to fit in there.",
             BURNT = "NOOOO!",
@@ -4140,7 +4138,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
 		KITCOONDEN_KIT = "The whole kit and caboodle.",
 
-		TICOON = 
+		TICOON =
 		{
 			GENERIC = "Meow.. Meow.. Meow...",
 			ABANDONED = "I'm sure I can find them on my own.",
@@ -4152,7 +4150,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 			NOTHING_TO_TRACK = "It doesn't look like there's anything left to find.",
 			TARGET_TOO_FAR_AWAY = "They might be too far away for him to sniff out.",
 		},
-		
+
 		YOT_CATCOONSHRINE =
         {
             GENERIC = "What to make...",
@@ -4257,7 +4255,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         POCKETWATCH_PARTS = "Some weird clock junk.",
         POCKETWATCH_DISMANTLER = "A bunch of little tools.",
 
-        POCKETWATCH_PORTAL_ENTRANCE = 
+        POCKETWATCH_PORTAL_ENTRANCE =
 		{
 			GENERIC = "Am I really just gonna jump into any old portal I see? Yep!",
 			DIFFERENTSHARD = "Am I really just gonna jump into any old portal I see? Yep!",
@@ -4271,7 +4269,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         WATERTREE_ROOT = "Is big tree root.",
 
         OCEANTREE_PILLAR = "Hey, it's gonna stop the sun from burning things!",
-        
+
         OCEANVINE = "Oh look, a really long wick!",
         FIG = "Looks like old people fruit.",
         FIG_COOKED = "As usual, fire made it better.",
@@ -4289,7 +4287,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         FIGKABAB = "When I'm done with the food I can burn the stick!",
         KOALEFIG_TRUNK = "Sweet and rubbery.",
         FROGNEWTON = "All that fig almost masks the frog flavor.",
-		
+
 		 -- The Terrorarium
         TERRARIUM = {
             GENERIC = "How did tiny tree get inside?",
@@ -4300,7 +4298,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 			SPAWN_DISABLED = "I shouldn't be bothered by anymore prying eyes now.",
         },
 
-        TERRARIUMCHEST = 
+        TERRARIUMCHEST =
 		{
 			GENERIC = "Is looking like normal chest without sparkles.",
 			BURNT = "Is burned away to dust.",
@@ -4322,7 +4320,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         SHIELDOFTERROR ="At least there's no eye gunk on it.",
         TWINOFTERROR1 = "ROBO! ROBOROBOROBOROBOROBO...",
         TWINOFTERROR2 = "ROBO! ROBOROBOROBOROBOROBO...",
-		
+
 		-- Year of the Catcoon
         CATTOY_MOUSE = "Mice with wheels..",
         KITCOON_NAMETAG = "I should think of some names!",
@@ -4340,7 +4338,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
 		KITCOONDECOR1_KIT = "It looks like there's some assembly required.",
 		KITCOONDECOR2_KIT = "It doesn't look too hard to build.",
-		
+
 		-- WX78
         WX78MODULE_MAXHEALTH = "Hey WX, when are you gonna install a flamethrower?",
         WX78MODULE_MAXSANITY1 = "Hey WX, when are you gonna install a flamethrower?",
@@ -4443,7 +4441,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
 
         BANANAJUICE = "I... like it.",
-		
+
 		FENCE_ROTATOR = "Enguard! Re-post!",
 
         CHARLIE_STAGE_POST = "It's a setup! It feels too... staged.",

@@ -1,7 +1,7 @@
 name = "Louis Manutsawee"
 description = "[Tutorial] Making Custom Skins for Modded Characters! by Hornete\n\n[Don't edit art] \nBut you can fix bug or reupload more powerful version."
 author = "#ffffff"
-version = "2.2.8.7" 
+version = "2.2.8.9"
 forumthread = ""
 
 api_version = 10
@@ -13,7 +13,7 @@ dont_starve_compatible = false
 reign_of_giants_compatible = false
 shipwrecked_compatible = false
 
-all_clients_require_mod = true 
+all_clients_require_mod = true
 
 icon_atlas = "modicon.xml"
 icon = "modicon.tex"
@@ -21,7 +21,6 @@ icon = "modicon.tex"
 server_filter_tags = {
 "character",
 }
-
 
 local function Header(title)
 	return { name = "", label = title, hover = "", options = { {description = "", data = false}, }, default = false, }
@@ -31,9 +30,8 @@ local function Space()
 	return { name = "", label = "", hover = "", options = { {description = "", data = false}, }, default = false, }
 end
 
+configuration_options = {
 
-configuration_options = {	
-		
 		Header("Option"),
 	{
         name = "manutsaweestartitem",
@@ -43,14 +41,14 @@ configuration_options = {
         {
             {description="Nothing", data = 0},
 			{description="Shinai", data = 1},
-            {description="Raikiri", data = 2},                        
-            {description="Yasha", data = 3},            
+            {description="Raikiri", data = 2},
+            {description="Yasha", data = 3},
             {description="Sakakura", data = 4},
             {description="Nihiru", data = 5},
-			{description="Katanablade", data = 6}, 
+			{description="Katanablade", data = 6},
         },
         default = 0,
-    },	
+    },
 		Space(),
 		Header("Scout skill"),
 	{
@@ -60,7 +58,7 @@ configuration_options = {
         options =
         {
             {description="Off", data = false},
-            {description="On", data = true},            
+            {description="On", data = true},
         },
         default = false,
     },
@@ -71,10 +69,10 @@ configuration_options = {
         options =
         {
             {description="Off", data = false},
-            {description="On", data = true},            
+            {description="On", data = true},
         },
         default = false,
-    },	
+    },
 		Space(),
 		Header("Character stat"),
 	{
@@ -105,7 +103,7 @@ configuration_options = {
             {description="240", data = 240},
             {description="250", data = 250},
             {description="300", data = 300},
-                   
+
         },
         default = 150,
     },
@@ -137,7 +135,7 @@ configuration_options = {
             {description="240", data = 240},
             {description="250", data = 250},
             {description="300", data = 300},
-                      
+
         },
         default = 200,
     },
@@ -146,7 +144,7 @@ configuration_options = {
         label = "Set Sanity 󰀓",
         hover = "",
         options =
-        {	
+        {
 			{description="50", data = 50},
 			{description="60", data = 60},
 			{description="70", data = 70},
@@ -169,7 +167,7 @@ configuration_options = {
             {description="240", data = 240},
             {description="250", data = 250},
             {description="300", data = 300},
-                   
+
         },
         default = 200,
     },
@@ -184,23 +182,23 @@ configuration_options = {
 			{description="20", data = 2},
 			{description="30", data = 3},
             {description="40", data = 4},
-            {description="50", data = 5},           
-            {description="60", data = 6},           
-            {description="70", data = 7},           
-            {description="80", data = 8},           
-            {description="90", data = 9},           
-            {description="100", data = 10},         
-            {description="110", data = 11},         
-            {description="120", data = 12},         
-            {description="130", data = 13},         
-            {description="140", data = 14},         
-            {description="150", data = 15},         
-            {description="160", data = 16},         
-            {description="170", data = 17},         
-            {description="180", data = 18},         
-            {description="190", data = 19},         
-            {description="200", data = 20},         
-                      
+            {description="50", data = 5},
+            {description="60", data = 6},
+            {description="70", data = 7},
+            {description="80", data = 8},
+            {description="90", data = 9},
+            {description="100", data = 10},
+            {description="110", data = 11},
+            {description="120", data = 12},
+            {description="130", data = 13},
+            {description="140", data = 14},
+            {description="150", data = 15},
+            {description="160", data = 16},
+            {description="170", data = 17},
+            {description="180", data = 18},
+            {description="190", data = 19},
+            {description="200", data = 20},
+
         },
         default = 0,
     },
@@ -215,23 +213,23 @@ configuration_options = {
 			{description="20", data = 2},
 			{description="30", data = 3},
             {description="40", data = 4},
-            {description="50", data = 5},           
-            {description="60", data = 6},           
-            {description="70", data = 7},           
-            {description="80", data = 8},           
-            {description="90", data = 9},           
-            {description="100", data = 10},         
-            {description="110", data = 11},         
-            {description="120", data = 12},         
-            {description="130", data = 13},         
-            {description="140", data = 14},         
-            {description="150", data = 15},         
-            {description="160", data = 16},         
-            {description="170", data = 17},         
-            {description="180", data = 18},         
-            {description="190", data = 19},         
-            {description="200", data = 20},               
-                      
+            {description="50", data = 5},
+            {description="60", data = 6},
+            {description="70", data = 7},
+            {description="80", data = 8},
+            {description="90", data = 9},
+            {description="100", data = 10},
+            {description="110", data = 11},
+            {description="120", data = 12},
+            {description="130", data = 13},
+            {description="140", data = 14},
+            {description="150", data = 15},
+            {description="160", data = 16},
+            {description="170", data = 17},
+            {description="180", data = 18},
+            {description="190", data = 19},
+            {description="200", data = 20},
+
         },
         default = 0,
     },
@@ -240,29 +238,29 @@ configuration_options = {
         label = "Max level Sanity+",
         hover = "",
         options =
-        {	
+        {
 			{description="0", data = 0},
             {description="10", data = 1},
 			{description="20", data = 2},
 			{description="30", data = 3},
             {description="40", data = 4},
-            {description="50", data = 5},           
-            {description="60", data = 6},           
-            {description="70", data = 7},           
-            {description="80", data = 8},           
-            {description="90", data = 9},           
-            {description="100", data = 10},         
-            {description="110", data = 11},         
-            {description="120", data = 12},         
-            {description="130", data = 13},         
-            {description="140", data = 14},         
-            {description="150", data = 15},         
-            {description="160", data = 16},         
-            {description="170", data = 17},         
-            {description="180", data = 18},         
-            {description="190", data = 19},         
-            {description="200", data = 20},                
-                      
+            {description="50", data = 5},
+            {description="60", data = 6},
+            {description="70", data = 7},
+            {description="80", data = 8},
+            {description="90", data = 9},
+            {description="100", data = 10},
+            {description="110", data = 11},
+            {description="120", data = 12},
+            {description="130", data = 13},
+            {description="140", data = 14},
+            {description="150", data = 15},
+            {description="160", data = 16},
+            {description="170", data = 17},
+            {description="180", data = 18},
+            {description="190", data = 19},
+            {description="200", data = 20},
+
         },
         default = 0,
     },
@@ -271,16 +269,16 @@ configuration_options = {
         label = "Set Mind  󰀈",
         hover = "Set Mind when start. level max + 10",
         options =
-        {            
-            {description="2", data = 2},          
-            {description="3", data = 3},   
-            {description="4", data = 4},   
-            {description="5", data = 5},   
-            {description="6", data = 6},   
-            {description="7", data = 7},   
-            {description="8", data = 8},   
-            {description="9", data = 9},   
-            {description="10", data = 10}, 
+        {
+            {description="2", data = 2},
+            {description="3", data = 3},
+            {description="4", data = 4},
+            {description="5", data = 5},
+            {description="6", data = 6},
+            {description="7", data = 7},
+            {description="8", data = 8},
+            {description="9", data = 9},
+            {description="10", data = 10},
             {description="15", data = 15},
             {description="20", data = 20},
         },
@@ -291,36 +289,36 @@ configuration_options = {
         label = "Mind  󰀈 Regen half of max / seccond ",
         hover = "Mind regenaration unlock level 4.",
         options =
-        {   
-			{description="10", data = 10},   
-            {description="20", data = 20},   
-            {description="30", data = 30},   
-            {description="60", data = 60},   
-            {description="90", data = 90},   
-            {description="120", data = 120},   
-            {description="150", data = 150},   
-            {description="180", data = 180},   
-            {description="210", data = 210},   
-            {description="240", data = 240},   
-            {description="270", data = 270},   
-            {description="300", data = 300},  
-            {description="360", data = 360},  
+        {
+			{description="10", data = 10},
+            {description="20", data = 20},
+            {description="30", data = 30},
+            {description="60", data = 60},
+            {description="90", data = 90},
+            {description="120", data = 120},
+            {description="150", data = 150},
+            {description="180", data = 180},
+            {description="210", data = 210},
+            {description="240", data = 240},
+            {description="270", data = 270},
+            {description="300", data = 300},
+            {description="360", data = 360},
             {description="420", data = 420},
         },
         default = 300,
-    },	
+    },
 	{
         name = "manutsaweemindregen",
         label = "Mind  󰀈 Regen / hit",
         hover = "Mind regen/hit that attack with katana.",
         options =
-        {           
-            {description="4", data = 4},           
-            {description="6", data = 6},             
-            {description="8", data = 8},            
-            {description="10", data = 10},   
-            {description="12", data = 12},              
-            {description="14", data = 14},   
+        {
+            {description="4", data = 4},
+            {description="6", data = 6},
+            {description="8", data = 8},
+            {description="10", data = 10},
+            {description="12", data = 12},
+            {description="14", data = 14},
             {description="16", data = 16},
             {description="18", data = 18},
             {description="20", data = 20},
@@ -337,10 +335,10 @@ configuration_options = {
         options =
         {
             {description="No", data = 1},
-            {description="x2", data = 2},          
+            {description="x2", data = 2},
             {description="x3", data = 3},
-            {description="x4", data = 4},   
-            {description="x5", data = 5},   
+            {description="x4", data = 4},
+            {description="x5", data = 5},
         },
         default = 1,
     },
@@ -351,7 +349,7 @@ configuration_options = {
         options =
         {
             {description="Off", data = false},
-            {description="On", data = true},            
+            {description="On", data = true},
         },
         default = false,
     },
@@ -362,19 +360,19 @@ configuration_options = {
         options =
         {
             {description="1", data = 1},
-            {description="2", data = 2},          
-            {description="3", data = 3},   
-            {description="4", data = 4},   
-            {description="5", data = 5},            
-            {description="6", data = 6},            
-            {description="7", data = 7},            
-            {description="8", data = 8},            
-            {description="9", data = 9},           
-            {description="10", data = 10},           
+            {description="2", data = 2},
+            {description="3", data = 3},
+            {description="4", data = 4},
+            {description="5", data = 5},
+            {description="6", data = 6},
+            {description="7", data = 7},
+            {description="8", data = 8},
+            {description="9", data = 9},
+            {description="10", data = 10},
         },
         default = 1,
     },
-		
+
 		Space(),
 		Header("Skill Keys 󰀈"),
 	{
@@ -470,14 +468,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -572,14 +570,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -592,8 +590,8 @@ configuration_options = {
             {description="9", data = 57},
         },
         default = 99,
-    },	
-	
+    },
+
 	{
         name = "mkeyskill3",
         label = "Skill3:Button",
@@ -675,14 +673,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -696,7 +694,7 @@ configuration_options = {
         },
         default = 116,
     },
-	
+
 	{
         name = "mkeyskillcounteratk",
         label = "Counter Attack Skill:Button",
@@ -778,14 +776,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -880,14 +878,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -982,14 +980,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -1017,16 +1015,16 @@ configuration_options = {
             {description="4", data = 4},
             {description="5", data = 5},
             {description="10", data = 10},
-            {description="Default(20)", data = 20},          
-            {description="30", data = 30},   
-            {description="40", data = 40},   
-            {description="50", data = 50},            
-            {description="60", data = 60},            
-            {description="120", data = 120},            
-            {description="180", data = 180},            
-            {description="240", data = 240},          
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+            {description="Default(20)", data = 20},
+            {description="30", data = 30},
+            {description="40", data = 40},
+            {description="50", data = 50},
+            {description="60", data = 60},
+            {description="120", data = 120},
+            {description="180", data = 180},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 20,
     },
@@ -1038,17 +1036,17 @@ configuration_options = {
         {
 			{description="5", data = 5},
             {description="10", data = 10},
-            {description="20", data = 20},          
+            {description="20", data = 20},
             {description="30", data = 30},
-            {description="40", data = 40}, 
-			{description="Default(45)", data = 45},  
-            {description="50", data = 50},            
-            {description="60", data = 60},            
-            {description="120", data = 120},            
-            {description="180", data = 180},            
-            {description="240", data = 240},          
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+            {description="40", data = 40},
+			{description="Default(45)", data = 45},
+            {description="50", data = 50},
+            {description="60", data = 60},
+            {description="120", data = 120},
+            {description="180", data = 180},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 45,
     },
@@ -1060,17 +1058,17 @@ configuration_options = {
         {
 			{description="5", data = 5},
             {description="10", data = 10},
-            {description="20", data = 20},          
-            {description="30", data = 30},   
+            {description="20", data = 20},
+            {description="30", data = 30},
             {description="40", data = 40},
-			 {description="Default(45)", data = 45},  
-            {description="50", data = 50},            
-            {description="60", data = 60},            
-            {description="120", data = 120},            
-            {description="180", data = 180},            
-            {description="240", data = 240},          
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+			 {description="Default(45)", data = 45},
+            {description="50", data = 50},
+            {description="60", data = 60},
+            {description="120", data = 120},
+            {description="180", data = 180},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 45,
     },
@@ -1082,17 +1080,17 @@ configuration_options = {
         {
 			{description="5", data = 5},
             {description="10", data = 10},
-            {description="20", data = 20},          
-            {description="30", data = 30},   
-            {description="40", data = 40},  
-            {description="Default(45)", data = 45},  
-            {description="50", data = 50},            
-            {description="60", data = 60},            
-            {description="120", data = 120},            
-            {description="180", data = 180},            
-            {description="240", data = 240},          
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+            {description="20", data = 20},
+            {description="30", data = 30},
+            {description="40", data = 40},
+            {description="Default(45)", data = 45},
+            {description="50", data = 50},
+            {description="60", data = 60},
+            {description="120", data = 120},
+            {description="180", data = 180},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 45,
     },
@@ -1101,16 +1099,16 @@ configuration_options = {
         label = "Tier 2 Skill Cooldown time(s)",
         hover = "Set Tier 2 Skill Cooldown time.",
         options =
-        {              
-            {description="50", data = 50},            
-            {description="60", data = 60},            
-            {description="Default(90)", data = 90},            
-            {description="120", data = 120},            
-            {description="150", data = 150},            
-            {description="180", data = 180},            
-            {description="240", data = 240},          
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+        {
+            {description="50", data = 50},
+            {description="60", data = 60},
+            {description="Default(90)", data = 90},
+            {description="120", data = 120},
+            {description="150", data = 150},
+            {description="180", data = 180},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 90,
     },
@@ -1119,20 +1117,20 @@ configuration_options = {
         label = "Tier 3 Skill Cooldown time(s)",
         hover = "Set Tier 3 Skill Cooldown time.",
         options =
-        {      
-            {description="90", data = 90},          
-            {description="120", data = 120},           
-            {description="150", data = 150},           
-            {description="180", data = 180},            
-            {description="Default(210)", data = 210},        
-            {description="240", data = 240},        
-            {description="300", data = 300},         
-            {description="360", data = 360},         
+        {
+            {description="90", data = 90},
+            {description="120", data = 120},
+            {description="150", data = 150},
+            {description="180", data = 180},
+            {description="Default(210)", data = 210},
+            {description="240", data = 240},
+            {description="300", data = 300},
+            {description="360", data = 360},
         },
         default = 210,
     },
 		Space(),
-		Header("Other Keys 󰀮"),	
+		Header("Other Keys 󰀮"),
 		{
         name = "glasses",
         label = "EyeGlasses 󰀅",
@@ -1214,14 +1212,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -1235,7 +1233,7 @@ configuration_options = {
         },
         default = 111,
     },
-	
+
 	{
         name = "Hairs",
         label = "Change Hairstyle 󰀖",
@@ -1317,14 +1315,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -1337,8 +1335,8 @@ configuration_options = {
             {description="9", data = 57},
         },
         default = 108,
-    },	
-			
+    },
+
 	{
         name = "levelcheck",
         label = "Show Level  󰀙",
@@ -1420,14 +1418,14 @@ configuration_options = {
             {description="F10", data = 291},
             {description="F11", data = 292},
             {description="F12", data = 293},
- 
+
             {description="UP", data = 273},
             {description="DOWN", data = 274},
             {description="RIGHT", data = 275},
             {description="LEFT", data = 276},
             {description="PAGEUP", data = 280},
             {description="PAGEDOWN", data = 281},
- 
+
             {description="0", data = 48},
             {description="1", data = 49},
             {description="2", data = 50},
@@ -1442,4 +1440,28 @@ configuration_options = {
         default = 112,
     },
 	Space(),
+    Header("Other Option"),
+    {
+        name = "wandaidleanim",
+        label = "Wanda idle animation.",
+        hover = "Wanda idle animation.",
+        options =
+        {
+            {description="Off", data = false},
+            {description="On", data = true},
+        },
+        default = false,
+    },
+    {
+        name = "compatiblewithia",
+        label = "Compatible with island adventure",
+        hover = "Compatible with island adventure",
+        options =
+        {
+            {description="Off", data = false},
+            {description="On", data = true},
+        },
+        default = false,
+    },
+    Space(),
 }

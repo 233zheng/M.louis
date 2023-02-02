@@ -1,9 +1,13 @@
+local ThePlayer = GLOBAL.ThePlayer
+local TheNet = GLOBAL.TheNet
+
 local function ConsolePostConstruct(inst)
+    print("Load: core/screens/consolescreen.lua")
 	local _OnBecomeActive = inst.OnBecomeActive
 	function inst:OnBecomeActive()
 		if not TheNet:IsDedicated() then
 			if ThePlayer ~= nil then
-		    		ThePlayer:PushEvent( "gamepaused", true )
+                ThePlayer:PushEvent( "gamepaused", true )
 			end
 		end
 
@@ -14,11 +18,11 @@ local function ConsolePostConstruct(inst)
 	function inst:OnBecomeInactive()
 		if not TheNet:IsDedicated() then
 			if ThePlayer ~= nil then
-		    		ThePlayer:PushEvent( "gamepaused", false )
+                ThePlayer:PushEvent( "gamepaused", false )
 			end
 		end
 
-	    	_OnBecomeInactive(self)
+        _OnBecomeInactive(self)
 	end
 
 	return inst
