@@ -1,4 +1,5 @@
 local modimport = modimport
+local TUNING = GLOBAL.TUNING
 GLOBAL.setfenv(1, GLOBAL)
 
 local postinit = {
@@ -26,4 +27,8 @@ end
 
 for k, v in pairs(skill_scripts) do
     modimport("postinit/skillscripts/".. v)
+end
+
+if TUNING.MANUTSAWEE.COMPATIBLEWITHKATANA then
+    modimport("postinit/katanarecipes")
 end

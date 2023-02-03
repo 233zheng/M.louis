@@ -47,7 +47,8 @@ TUNING.MANUTSAWEE = {
 
     --option
     IDLEANIM = GetModConfigData("wandaidleanim"),
-    COMPATIBLE = GetModConfigData("compatiblewithia")
+    COMPATIBLE = GetModConfigData("compatiblewithia"),
+    COMPATIBLEWITHKATANA = GetModConfigData("compatiblewithkatana")
 }
 
 local t = {
@@ -82,4 +83,10 @@ TUNING.KATANA = {
     MMIKO_ARMOR_PRECENT = 0.8,
 }
 
-
+TUNING.MINGOT_WORK_REQUIRED = 4
+TUNING.MINGOT_LOOT = {
+    WORK_MAX_SPAWNS = 10,
+    LAUNCH_SPEED = -1.8,
+    LAUNCH_HEIGHT = 0.5,
+    LAUNCH_ANGLE = 65,
+}

@@ -12,11 +12,30 @@ local assets =
     Asset("IMAGE", "images/inventoryimages/katanabody.tex"),
 }
 
-local function downgrade(inst, chopper)
+
+-- When multiple Mingot are stacked,
+-- only one Mingot's material will be returned if it is hit with a hammer
+-- So I fixed it
+local function downgrade(inst, worker, workleft, workdone)
+    local num_loots = math.clamp(workdone / TUNING.MINGOT_WORK_REQUIRED, 1, TUNING.MINGOT_LOOT.WORK_MAX_SPAWNS)
+    num_loots = math.min(num_loots, inst.components.stackable:StackSize())
+
+	if inst.components.stackable:StackSize() > num_loots then
+		if num_loots == TUNING.MINGOT_LOOT.WORK_MAX_SPAWNS then
+			LaunchAt(inst, inst, worker, TUNING.SPOILED_FISH_LOOT.LAUNCH_SPEED, TUNING.SPOILED_FISH_LOOT.LAUNCH_HEIGHT, nil, TUNING.SPOILED_FISH_LOOT.LAUNCH_ANGLE)
+		end
+    end
+
+    for i = 1, num_loots do
+        inst.components.lootdropper:DropLoot()
+    end
+
+    local mingot = inst.components.stackable:Get(num_loots)
+
+    mingot.Transform:SetPosition(inst:GetPosition():Get())
 	local collapse_fx = SpawnPrefab("collapse_small")
     collapse_fx.Transform:SetPosition(inst.Transform:GetWorldPosition())
-    inst.components.lootdropper:DropLoot()
-    inst:Remove()
+    mingot:Remove()
 end
 
 local function mingotfn()
@@ -41,13 +60,8 @@ local function mingotfn()
         return inst
     end
 
-    -- I don't know how to fix this bug :(
-    -- Because when multiple Mingot are stacked,
-    -- only one Mingot's material will be returned if it is hit with a hammer
-    -- So I removed stackable
-
-    -- inst:AddComponent("stackable")
-    -- inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
+    inst:AddComponent("stackable")
+    inst.components.stackable.maxsize = TUNING.STACK_SIZE_SMALLITEM
 
     inst:AddComponent("inspectable")
 
@@ -63,7 +77,7 @@ local function mingotfn()
 
 	inst:AddComponent("workable")
     inst.components.workable:SetWorkAction(ACTIONS.HAMMER)
-    inst.components.workable:SetOnFinishCallback(downgrade)
+    inst.components.workable:SetOnWorkCallback(downgrade)
     inst.components.workable:SetWorkLeft(3)
 
 	inst:AddComponent("lootdropper")

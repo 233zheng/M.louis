@@ -20,8 +20,8 @@ Load "textedit"
 FOODTYPE.MFRUIT = "MFRUIT"
 
 modimport("main/assets")
-modimport("main/postinit")
 modimport("main/tuning")
+modimport("main/postinit")
 modimport("main/manutsaweeskin")
 modimport("main/manutsaweeitemrecipes")
 modimport("main/manutsawee_strings")

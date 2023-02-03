@@ -1463,5 +1463,16 @@ configuration_options = {
         },
         default = false,
     },
+    {
+        name = "compatiblewithkatana",
+        label = "Compatible with katana",
+        hover = "Compatible with katana",
+        options =
+        {
+            {description="Off", data = false},
+            {description="On", data = true},
+        },
+        default = false,
+    },
     Space(),
 }
