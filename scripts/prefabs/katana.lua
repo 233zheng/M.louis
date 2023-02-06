@@ -228,6 +228,18 @@ local function onhit(inst, worker)
     inst.SoundEmitter:PlaySound("dontstarve/impacts/impact_mech_med_sharp")
 end
 
+local function OnPutInInventory(inst)
+    local owner = inst.components.inventoryitem:GetGrandOwner()
+	if owner ~= nil and owner.components.inventory and not owner:HasTag("manutsaweecraft") then
+		if owner:HasTag("player") then
+            owner.components.talker:Say("It's against me......")
+        end
+        inst:DoTaskInTime(0.1, function()
+			owner.components.inventory:DropItem(inst)
+		end)
+    end
+end
+
 local function onSave(inst, data)
     data.wpstatus = inst.wpstatus
 end
@@ -289,6 +301,7 @@ local function masterfn(inst, image, spawnnewitem, bank, build, sc_bank, swap, s
 	inst.components.inventoryitem.canonlygoinpocket = true
     inst.components.inventoryitem.imagename = image
     inst.components.inventoryitem.atlasname = "images/inventoryimages/".. image ..".xml"
+    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
 
 	inst:AddComponent("spellcaster")
     inst.components.spellcaster:SetSpellFn(castFn)

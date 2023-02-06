@@ -1,7 +1,7 @@
-name = "Louis Manutsawee"
+name = "Louis Manutsawee compatible with ia"
 description = "[Tutorial] Making Custom Skins for Modded Characters! by Hornete\n\n[Don't edit art] \nBut you can fix bug or reupload more powerful version."
 author = "#ffffff"
-version = "2.2.8.9"
+version = "2.2.8.9.2"
 forumthread = ""
 
 api_version = 10

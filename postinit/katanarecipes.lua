@@ -36,4 +36,4 @@ local function mortalbladepostinit(recipe)
     end
 end
 
-AddRecipePostInit("mortalblade", shusuipostinit)
+AddRecipePostInit("mortalblade", mortalbladepostinit)

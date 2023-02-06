@@ -90,3 +90,8 @@ TUNING.MINGOT_LOOT = {
     LAUNCH_HEIGHT = 0.5,
     LAUNCH_ANGLE = 65,
 }
+
+if GetModConfigData("compatiblewithia") then
+    TUNING.MSURFBOARD_HEALTH = 300
+    TUNING.MSURFBOARD_SPEED = 0
+end

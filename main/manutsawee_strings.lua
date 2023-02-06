@@ -2,6 +2,7 @@
 local STRINGS = GLOBAL.STRINGS
 local require = GLOBAL.require
 local TUNING = GLOBAL.TUNING
+local GetModConfigData = GetModConfigData
 local AddModCharacter = AddModCharacter
 GLOBAL.setfenv(1, GLOBAL)
 
@@ -168,6 +169,18 @@ STRINGS.NAMES.RAIKIRI2 = "Raikiri The Lightning Cutter"
 STRINGS.RECIPE_DESC.RAIKIRI2 = "True Raikiri"
 STRINGS.CHARACTERS.GENERIC.DESCRIBE.RAIKIRI2 = "This sword look dangerous,Don't touch it."
 STRINGS.CHARACTERS.MANUTSAWEE.DESCRIBE.RAIKIRI2 = "Once it used to split a bolt of lightning."
+
+if GetModConfigData("compatiblewithia") then
+    --Surf board
+    STRINGS.NAMES.MSURFBOARD_ITEM = "louis's Surf board"
+    STRINGS.RECIPE_DESC.MSURFBOARD_ITEM = "louis's Surf board"
+    STRINGS.CHARACTERS.GENERIC.DESCRIBE.MSURFBOARD_ITEM = "Which lady's surfboard is this?"
+    STRINGS.CHARACTERS.MANUTSAWEE.DESCRIBE.MSURFBOARD_ITEM = "louis's Surf board"
+
+    STRINGS.NAMES.BOAT_MSURFBOARD = "Louis's Surf board"
+    STRINGS.CHARACTERS.GENERIC.DESCRIBE.BOAT_MSURFBOARD = "Very exquisite workmanship."
+    STRINGS.CHARACTERS.MANUTSAWEE.DESCRIBE.BOAT_MSURFBOARD = "Ride the waves!"
+end
 
 ------------------------------------------------------------------------------------------------
 

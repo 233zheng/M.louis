@@ -94,7 +94,7 @@ local function ExothecationMode(inst)
     inst.AnimState:SetBuild(inst.build2)
 
     if TUNING.MANUTSAWEE.COMPATIBLE then
-        if inst.components.tool ~= nil then
+        if inst.components.tool == nil then
             inst:AddComponent("tool")
             inst.components.tool:SetAction(ACTIONS.HACK, 3)
         end
@@ -209,6 +209,31 @@ local function swordregen(inst)
 	inst:DoTaskInTime(60, swordregen)
 end
 
+local function OnPutInInventory(inst)
+    local owner = inst.components.inventoryitem:GetGrandOwner()
+    local num  = 10
+    local fx
+	if owner ~= nil and owner.components.inventory and not owner:HasTag("manutsaweecraft") then
+		if owner:HasTag("player") then
+            owner.components.talker:Say("It's against me......")
+        end
+        inst:DoTaskInTime(0.1, function()
+            if inst:HasTag("lightningcutter") then
+                fx = SpawnPrefab("electrichitsparks")
+                fx.Transform:SetPosition(inst:GetPosition():Get())
+            elseif inst:HasTag("shadow_item") then
+                num = 30
+                fx = SpawnPrefab("wanda_attack_pocketwatch_old_fx")
+                fx.Transform:SetPosition(inst:GetPosition():Get())
+            end
+			if owner.components.combat ~= nil then
+				owner.components.combat:GetAttacked(inst, num)
+			end
+			owner.components.inventory:DropItem(inst)
+		end)
+    end
+end
+
 local function onSave(inst, data)
     data.wpstatus = inst.wpstatus
 end
@@ -278,6 +303,7 @@ local function masterfn(inst, image, spawnnewitem, bank, build, sc_bank, swap, s
 	inst.components.inventoryitem.canonlygoinpocket = true
     inst.components.inventoryitem.imagename = image
     inst.components.inventoryitem.atlasname = "images/inventoryimages/".. image ..".xml"
+    inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
 
 	inst:AddComponent("spellcaster")
     inst.components.spellcaster:SetSpellFn(castFn)
@@ -351,7 +377,7 @@ local function hitokiri2OnAttack(inst, owner, target)
 end
 
 local function hitokiri2fn()
-    local inst = commonfn("hitokiri", "hitokiri")
+    local inst = commonfn("hitokiri", "hitokiri", true)
 
     inst.entity:SetPristine()
 
@@ -421,7 +447,7 @@ local function shirasaya2fn()
     return inst
 end
 
-local function raikiri2OnAttackk(inst, owner, target)
+local function raikiri2OnAttack(inst, owner, target)
 	if owner.components.rider:IsRiding() then return end
 
 	if inst.wpstatus == 1 and inst:HasTag("Iai") then
@@ -473,7 +499,7 @@ local function raikiri2fn()
 
     masterfn(inst, "raikiri2", "raikiri", "raikiri", "raikiri", "sc_raikiri", "swap_raikiri", "swap_Sraikiri")
 
-    inst.components.weapon:SetOnAttack(raikiri2OnAttackk)
+    inst.components.weapon:SetOnAttack(raikiri2OnAttack)
 
     -- Because it's a lightning cutter
     inst:WatchWorldState("israining", onisraining)

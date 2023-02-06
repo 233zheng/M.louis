@@ -105,7 +105,13 @@ local states = {
             end),
 			TimeEvent(6 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/swipe")
-                SkillCollision(inst, false)
+
+                if TUNING.MANUTSAWEE.COMPATIBLE then
+                    ia_SkillCollision(inst, false)
+                    else
+                    SkillCollision(inst, false)
+                end
+
             end),
 			TimeEvent(11 * FRAMES, function(inst)
                 inst.Physics:ClearMotorVelOverride()

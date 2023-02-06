@@ -1,4 +1,5 @@
 local AddMinimapAtlas = AddMinimapAtlas
+local GetModConfigData = GetModConfigData
 
 PrefabFiles = {
     "manutsawee",
@@ -34,7 +35,9 @@ PrefabFiles = {
     "mfruit",
 
     "mingot",
-    "mmiko_armor"
+    "mmiko_armor",
+
+    "msurfboard"
 }
 
 Assets = {
@@ -91,6 +94,8 @@ Assets = {
     Asset("ATLAS", "images/map_icons/raikiri.xml"),
     Asset("IMAGE", "images/map_icons/yari.tex"),
     Asset("ATLAS", "images/map_icons/yari.xml"),
+    Asset("IMAGE", "images/map_icons/boat_msurfboard.tex"),
+    Asset("ATLAS", "images/map_icons/boat_msurfboard.xml"),
 
     Asset("IMAGE", "images/inventoryimages/raikiri.tex"),
     Asset("ATLAS", "images/inventoryimages/raikiri.xml"),
@@ -101,10 +106,17 @@ Assets = {
     Asset("IMAGE", "images/inventoryimages/mkabuto.tex"),
     Asset("ATLAS", "images/inventoryimages/mkabuto.xml"),
     Asset("IMAGE", "images/inventoryimages/maid_hb.tex"),
-    Asset("ATLAS", "images/inventoryimages/maid_hb.xml")
+    Asset("ATLAS", "images/inventoryimages/maid_hb.xml"),
 }
 
 AddMinimapAtlas("images/map_icons/manutsawee.xml")
 AddMinimapAtlas("images/map_icons/raikiri.xml")
 AddMinimapAtlas("images/map_icons/yari.xml")
 
+if GetModConfigData("compatiblewithia") then
+    table.insert(PrefabFiles, "msurfboard")
+    table.insert(Assets, Asset("IMAGE", "images/inventoryimages/boat_msurfboard.tex"))
+    table.insert(Assets, Asset("ATLAS", "images/inventoryimages/boat_msurfboard.xml"))
+
+    AddMinimapAtlas("images/map_icons/boat_msurfboard.xml")
+end

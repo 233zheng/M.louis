@@ -1,6 +1,8 @@
 local AddRecipe2 = AddRecipe2
 local TECH = GLOBAL.TECH
 local Ingredient = GLOBAL.Ingredient
+local AddCharacterRecipe = AddCharacterRecipe
+local GetModConfigData = GetModConfigData
 GLOBAL.setfenv(1, GLOBAL)
 
 --------------------------My item
@@ -79,6 +81,15 @@ AddRecipe2("mingot",
 TECH.SCIENCE_TWO,
 {builder_tag="manutsaweecraft", atlas = "images/inventoryimages/mingot.xml", image = "mingot.tex"},
 {"CHARACTER", "REFINE"})
+
+if GetModConfigData("compatiblewithia") then
+    -- Surf board
+    AddRecipe2("msurfboard_item",
+    {Ingredient("boards", 1), Ingredient("seashell", 2)},
+    TECH.NONE,
+    {builder_tag = "manutsaweecraft", atlas = "images/inventoryimages/boat_msurfboard.xml", image = "boat_msurfboard.tex"},
+    {"CHARACTER", "SEAFARING"})
+end
 
 AddRecipe2("mkatana",{Ingredient("flint", 6),Ingredient("rope", 2),Ingredient("log", 2)},TECH.SCIENCE_ONE,{builder_tag="manutsaweecraft", atlas = "images/inventoryimages/mkatana.xml", image = "mkatana.tex"},{"CHARACTER", "WEAPONS"})
 AddRecipe2("katanablade",{Ingredient("rope", 1),Ingredient("katanabody", 1,"images/inventoryimages/katanabody.xml"),Ingredient("cutstone", 1)},TECH.SCIENCE_TWO,{builder_tag="manutsaweecraft", atlas = "images/inventoryimages/katanablade.xml", image = "katanablade.tex"},{"CHARACTER", "WEAPONS"})
