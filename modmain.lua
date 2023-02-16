@@ -7,7 +7,6 @@
 -- GLOBAL.setfenv(1, GLOBAL)
 
 local modimport = modimport
-local FOODTYPE = GLOBAL.FOODTYPE
 
 -- Import the engine.
 modimport("engine.lua")
@@ -17,12 +16,13 @@ Load "chatinputscreen"
 Load "consolescreen"
 Load "textedit"
 
-FOODTYPE.MFRUIT = "MFRUIT"
-
 modimport("main/assets")
+modimport("main/fx")
 modimport("main/tuning")
 modimport("main/postinit")
 modimport("main/manutsaweeskin")
 modimport("main/manutsaweeitemrecipes")
 modimport("main/manutsawee_strings")
 modimport("main/containers")
+modimport("main/commands")
+modimport("main/constants")
