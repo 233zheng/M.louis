@@ -95,12 +95,23 @@ return{
 		{
 			WRONGGEAR = "Seems like overkill.",
 		},
-        --wickerbottom specific action
---fallback to speech_wilson.lua         READ =
---fallback to speech_wilson.lua         {
---fallback to speech_wilson.lua             GENERIC = "only_used_by_wickerbottom",
---fallback to speech_wilson.lua             NOBIRDS = "only_used_by_wickerbottom"
---fallback to speech_wilson.lua         },
+
+        --  READ =
+        -- {
+        --     GENERIC = "Which one? Who can remember what I learned in high school?",
+        --     NOBIRDS = "This attracts them more than cookies.",
+        --     NOWATERNEARBY = "My clothes are getting dry.",
+        --     TOOMANYBIRDS = "This attracts them more than cookies.",
+        --     WAYTOOMANYBIRDS = "only_used_by_waxwell_and_wicker",
+        --     NOFIRES =       "only_used_by_waxwell_and_wicker",
+        --     NOSILVICULTURE = "only_used_by_waxwell_and_wicker",
+        --     NOHORTICULTURE = "only_used_by_waxwell_and_wicker",
+        --     NOTENTACLEGROUND = "only_used_by_waxwell_and_wicker",
+        --     NOSLEEPTARGETS = "only_used_by_waxwell_and_wicker",
+        --     TOOMANYBEES = "only_used_by_waxwell_and_wicker",
+        --     NOMOONINCAVES = "only_used_by_waxwell_and_wicker",
+        --     ALREADYFULLMOON = "only_used_by_waxwell_and_wicker",
+        -- },
 
         GIVE =
         {
@@ -131,6 +142,10 @@ return{
 			CARNIVALGAME_INVALID_ITEM = "I guess that won't work.",
 			CARNIVALGAME_ALREADY_PLAYING = "Come on, hurry up!",
             SPIDERNOHAT = "Why does it need a hat when it's snug as a bug in my pocket?",
+            TERRARIUM_REFUSE = "What, that wasn't good enough for it?",
+            TERRARIUM_COOLDOWN = "It's not taking it, is it broken? Where'd that tree go?",
+            NOTAMONKEY = "Oh, don't stare at me!",
+            QUEENBUSY = "Hey! Whatever else you're doing can wait.",
         },
         GIVETOPLAYER =
         {
@@ -171,6 +186,7 @@ return{
         {
             TARGETINCOMBAT = "I'll ride it when it settles down.",
             INUSE = "They beat me to the hairy beast. Maybe it's for the best.",
+			SLEEPING = "Oh good you're awake, now let's get going!",
         },
         SADDLE =
         {
@@ -187,6 +203,8 @@ return{
 
 			--MapSpotRevealer/messagebottle
 			MESSAGEBOTTLEMANAGER_NOT_FOUND = "No point trying to read this here.",--Likely trying to read messagebottle treasure map in caves
+
+            STASH_MAP_NOT_FOUND = "Huh. These monkeys are painted in a mess",-- Likely trying to read stash map  in world without stash
         },
         WRAPBUNDLE =
         {
@@ -203,6 +221,7 @@ return{
                 "Mine is the little orange one, with whiskers.",
             },
 --fallback to speech_wilson.lua 			NO_HEAVY_LIFTING = "only_used_by_wanda",
+        FULL_OF_CURSES = "That thing is demonic!",
         },
         SLAUGHTER =
         {
@@ -334,6 +353,46 @@ return{
         {
 --fallback to speech_wilson.lua             ONCOOLDOWN = "only_used_by_wanda",
         },
+
+        ENTER_GYM =
+        {
+--fallback to speech_wilson.lua             NOWEIGHT = "only_used_by_wolfang",
+--fallback to speech_wilson.lua             UNBALANCED = "only_used_by_wolfang",
+--fallback to speech_wilson.lua             ONFIRE = "only_used_by_wolfang",
+--fallback to speech_wilson.lua             SMOULDER = "only_used_by_wolfang",
+--fallback to speech_wilson.lua             HUNGRY = "only_used_by_wolfang",
+--fallback to speech_wilson.lua             FULL = "only_used_by_wolfang",
+        },
+
+        APPLYMODULE =
+        {
+            COOLDOWN = "only_used_by_wx78",
+            NOTENOUGHSLOTS = "only_used_by_wx78",
+        },
+        REMOVEMODULES =
+        {
+            NO_MODULES = "only_used_by_wx78",
+        },
+        CHARGE_FROM =
+        {
+            NOT_ENOUGH_CHARGE = "only_used_by_wx78",
+            CHARGE_FULL = "only_used_by_wx78",
+        },
+
+        HARVEST =
+        {
+            DOER_ISNT_MODULE_OWNER = "Ha! Scan THAT!",
+        },
+
+		CAST_SPELLBOOK =
+		{
+--fallback to speech_wilson.lua			NO_TOPHAT = "only_used_by_waxwell",
+		},
+
+		CASTAOE =
+		{
+--fallback to speech_wilson.lua			NO_MAX_SANITY = "only_used_by_waxwell",
+		},
     },
 	ANNOUNCE_CANNOT_BUILD =
 	{
@@ -486,6 +545,7 @@ return{
 	ANNOUNCE_LIGHTNING_DAMAGE_AVOIDED = "I was almost struck down!",
 	ANNOUNCE_TOADESCAPING = "Don't even think about running, toad!",
 	ANNOUNCE_TOADESCAPED = "Ughh! But I was winning!",
+    ANNOUNCE_NOSLEEPHASPERMANENTLIGHT = "Why is WX78 glowing? It's hard for me to close my eyes.",
 
 
 	ANNOUNCE_DAMP = "Uh oh!",
@@ -533,6 +593,7 @@ return{
     ANNOUNCE_REVIVED_FROM_CORPSE = "Thanks for the hand!",
 
     ANNOUNCE_FLARE_SEEN = "Oh, someone's calling me to come over.",
+    ANNOUNCE_MEGA_FLARE_SEEN = "Looks like someone wants to start a fight.",
     ANNOUNCE_OCEAN_SILHOUETTE_INCOMING = "Something big's coming!",
 
     --willow specific
@@ -784,7 +845,9 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
     ANNOUNCE_PIRATES_ARRIVE = "Uh, that sound's getting closer...",
 
-		BATTLECRY =
+    ANNOUNCE_OFF_SCRIPT = "Oh, no!",
+
+	BATTLECRY =
 	{
 		GENERIC = "Hah!",
 		PIG = {"Buu.. Buu...","Here Piggy Piggy!"},
@@ -856,13 +919,37 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         BERNIE_ACTIVE = "That teddy bear is moving!",
         BERNIE_BIG = "It's creepy and cute at the same time!!",
 
+		BOOKSTATION =
+		{
+			GENERIC = "Hey, who can remember what I learned in high school?",
+			BURNT = "Knowledge can't be treated like this",
+		},
+
         BOOK_BIRDS = "No point studying when I can just wing it.",
         BOOK_TENTACLES = "Someone'll get suckered into reading this.",
         BOOK_GARDENING = "I see no farm in reading that.",
 		BOOK_SILVICULTURE = "I'll stick to my own experiments.",
 		BOOK_HORTICULTURE = "I see no farm in reading that.",
-        BOOK_SLEEP = "Strange, it's just 500 pages of telegraph codes.",
+        BOOK_SLEEP = "Who will tell me a story before I go to bed?",
+
+        -- BOOK_SLEEP = "Strange, it's just 500 pages of telegraph codes.",
+
         BOOK_BRIMSTONE = "The beginning was dull, but got better near the end.",
+
+        BOOK_FISH = "It's as interesting as fishing.",
+        BOOK_FIRE = "I don't need books to teach me this!",
+        BOOK_WEB = "Ew, who wants to read a book about spiders?",
+        BOOK_TEMPERATURE = "Yaaaawwwn.",
+        BOOK_LIGHT = "Sounds pretty mysterious!",
+        BOOK_RAIN = "Ugh, I hate rain!",
+        BOOK_MOON = "I'm looking up at the moon~",
+        BOOK_BEES = "Beeeeeeeeeeeeeeeeeeeeeeee!!!",
+
+        BOOK_HORTICULTURE_UPGRADED = "The knowledge within shall grant us bountiful harvests.",
+        BOOK_RESEARCH_STATION = "More knowledge!",
+        BOOK_LIGHT_UPGRADED = "Let's keep this one close at hand, shall we?",
+
+        FIREPEN = "Hey, I'm feeling really inspired to write!",
 
         PLAYER =
         {
@@ -1355,6 +1442,20 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
         TURF_SHELLBEACH = "The ground is boring.",
 
+		TURF_RUINSBRICK = "The ground is boring.",
+		TURF_RUINSBRICK_GLOW = "The ground is boring.",
+		TURF_RUINSTILES = "The ground is boring.",
+		TURF_RUINSTILES_GLOW = "The ground is boring.",
+		TURF_RUINSTRIM = "The ground is boring.",
+		TURF_RUINSTRIM_GLOW = "The ground is boring.",
+
+        TURF_MONKEY_GROUND = "The ground is boring.",
+
+        TURF_CARPETFLOOR2 = "The ground is boring.",
+        TURF_MOSAIC_GREY = "The ground is boring.",
+        TURF_MOSAIC_RED = "The ground is boring.",
+        TURF_MOSAIC_BLUE = "The ground is boring.",
+
 		POWCAKE = "This never ends well.",
         CAVE_ENTRANCE = "Who plugged that hole?",
         CAVE_ENTRANCE_RUINS = "Who plugged that hole?",
@@ -1536,6 +1637,12 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
             COMMON = "This will save some experimentation.",
             RARE = "Woah. It doesn't burn!!",
         },
+
+        COOKINGRECIPECARD =
+		{
+			GENERIC = "It records a lot of delicious food!",
+		},
+
         SKETCH = "Trading diagrams is for dorks.",
 		BLUE_CAP = "It smells like a gym sock!",
 		BLUE_CAP_COOKED = "Transformed by fire!",
@@ -1561,6 +1668,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 		BUZZARD = "Your neck is gross.",
 
 		SHADOWDIGGER = "Eww, it's even creepier than the real one.",
+        SHADOWDANCER = "Yep, that's pure nightmare fuel.",
 
 		CACTUS =
 		{
@@ -1722,6 +1830,8 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 		},
         GOGGLESHAT = "What a great look!",
         DESERTHAT = "Not very stylish.",
+        ANTLIONHAT = "Pfft, I like it.",
+
 --fallback to speech_wilson.lua 		DEVTOOL = "It smells of bacon!",
 --fallback to speech_wilson.lua 		DEVTOOL_NODEV = "I'm not strong enough to wield it.",
 		DIRTPILE = "Who just leaves dirt lying around in the forest?",
@@ -4021,6 +4131,38 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 		},
 		CARNIVALGAME_HERDING_CHICK = "Hey! Get back here!",
 
+		CARNIVALGAME_SHOOTING_KIT = "Aw come on, I've got to set it up myself?",
+		CARNIVALGAME_SHOOTING_STATION =
+		{
+			GENERIC = "I've uh... never actually been to a carnival before. Do I give it something?",
+			PLAYING = "Ooh, games where you get to hit something are my favorite!",
+		},
+		CARNIVALGAME_SHOOTING_TARGET =
+		{
+			GENERIC = "A little door to nowhere special.",
+			PLAYING = "Think fast, bugs!",
+		},
+
+		CARNIVALGAME_SHOOTING_BUTTON =
+		{
+			GENERIC = "I've uh... never actually been to a carnival before. Do I give it something?",
+			PLAYING = "Fire! Fire!",
+		},
+
+		CARNIVALGAME_WHEELSPIN_KIT = "Aw come on, I've got to set it up myself?",
+		CARNIVALGAME_WHEELSPIN_STATION =
+		{
+			GENERIC = "I've uh... never actually been to a carnival before. Do I give it something?",
+			PLAYING = "Wow, I'm great at this game!",
+		},
+
+		CARNIVALGAME_PUCKDROP_KIT = "Aw come on, I've got to set it up myself?",
+		CARNIVALGAME_PUCKDROP_STATION =
+		{
+			GENERIC = "I've uh... never actually been to a carnival before. Do I give it something?",
+			PLAYING = "Bounce that way! No, THAT way!!",
+		},
+
 		CARNIVAL_PRIZEBOOTH_KIT = "Uuuugh, one more thing to build.",
 		CARNIVAL_PRIZEBOOTH =
 		{
@@ -4049,6 +4191,8 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 		CARNIVALDECOR_LAMP = "It makes light.",
 		CARNIVALDECOR_PLANT_KIT = "Can somebody else put it together for me?",
 		CARNIVALDECOR_PLANT = "Guess this tree never got its growth spurt.",
+		CARNIVALDECOR_BANNER_KIT = "Can somebody else put it together for me?",
+        CARNIVALDECOR_BANNER = "Oh yeah, that'll catch the firelight nicely!",
 
 		CARNIVALDECOR_FIGURE =
 		{
@@ -4298,6 +4442,19 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 			SPAWN_DISABLED = "I shouldn't be bothered by anymore prying eyes now.",
         },
 
+        -- Wolfgang
+        MIGHTY_GYM =
+        {
+            GENERIC = "You know what this strongman show needs? Pyrotechnics!",
+            BURNT = "I don't know what Wolfgang's so upset about, I thought the fire effects were great!",
+        },
+
+        DUMBBELL = "Quit making stuff I can't burn!",
+        DUMBBELL_GOLDEN = "Did he really need to make it so fancy?",
+		DUMBBELL_MARBLE = "Did he really need to make it so fancy?",
+        DUMBBELL_GEM = "Did he really need to make it so fancy?",
+        POTATOSACK = "I could make it a roasted potato sack, just say the word!",
+
         TERRARIUMCHEST =
 		{
 			GENERIC = "Is looking like normal chest without sparkles.",
@@ -4370,6 +4527,13 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
 
         SCANDATA = "hmmm..?",
 
+		-- QOL 2022
+		JUSTEGGS = "Eggs and more eggs.",
+		VEGGIEOMLET = "Hey, there's vegetables hiding underneath!",
+		TALLEGGS = "It still has that birdy crunch to it.",
+		BEEFALOFEED = "I don't eat cow feed",
+		BEEFALOTREAT = "Beefalo are pretty easy to please.",
+
         -- Pirates
         BOAT_ROTATOR = "Hehehe, let's see how fast we can spin without getting sick!",
         BOAT_ROTATOR_KIT = "Fiiiine, I'll put the stupid rudder on the stupid boat.",
@@ -4380,6 +4544,7 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         BOAT_CANNON = {
             GENERIC = "It isn't loaded? Booooring.",
             AMMOLOADED = "The only fun part of sailing is getting to fire the cannon.",
+            NOAMMO = "Darn it, I'm out... hey Wes, you always wanted to try being a human cannonball right?",
         },
         BOAT_CANNON_KIT = "If I build it, I get to fire it.",
         CANNONBALL_ROCK_ITEM = "Okay, but I still think fireballs would be better.",
@@ -4408,7 +4573,12 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
         DOCK_KIT = "Everything I need to build a dock for my boat.",
         DOCK_WOODPOSTS_ITEM = "Aha! I thought the dock was missing something.",
 
-        MONKEYHUT = "Ugh, nobody ever lets me into their tree forts.",
+        MONKEYHUT =
+        {
+            GENERIC = "Ugh, nobody ever lets me into their tree forts.",
+            BURNT = "Heh. This is probably why nobody lets me into their tree forts.",
+        },
+
         POWDER_MONKEY = "Hey! Hands off my stuff!",
         PRIME_MATE = "I don't like the way he swings that paddle around.",
 		LIGHTCRAB = "It's like there's a little fire burning inside.",
@@ -4482,6 +4652,9 @@ ANNOUNCE_SLINGHSOT_OUT_OF_AMMO ={ "Out of ammo!","No ammo!",},
             GENERIC = "All dressed up and nowhere to go.",
             BURNT = "All burnt up and nowhere to go.",
         },
+
+        MAGICIAN_CHEST = "What's in it? Do you have anything delicious?",
+		TOPHAT_MAGICIAN = "Aww, I thought I saw smoke, but it's just Max's shadow gunk.",
     },
 
     DESCRIBE_GENERIC = "I have no idea what that is!",

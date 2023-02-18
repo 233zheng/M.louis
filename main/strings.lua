@@ -1,3 +1,7 @@
+if not TUNING.MANUTSAWEE.COMPATIBLE then
+    return
+end
+
 local env = env
 local STRINGS = GLOBAL.STRINGS
 local AddGamePostInit = AddGamePostInit
@@ -11,21 +15,9 @@ local _speech = {
 }
 
 local _languages = {
-	de = "de", --german
-	es = "es", --spanish
-	fr = "fr", --french
-	it = "it", --italian
-	ko = "ko", --korean
-	--Note: The only language mod I found that uses "pt" is also brazilian portuguese -M
-	pt = "pt", --portuguese
-	br = "pt", --brazilian portuguese
-	pl = "pl", --polish
-	ru = "ru", --russian
 	zh = "sc", --chinese
 	chs = "sc", --chinese mod
 	sc = "sc", --simple chinese
-	tc = "tc", --traditional chinese
-	cht = "tc", --chinese mod
 }
 
 local function merge(target, new, soft)
@@ -55,11 +47,11 @@ end
 
 -- Install our crazy loader!
 local function import(modulename)
-	print("modimport (strings file): " .. MODROOT .. "strings/" .. modulename)
+	print("modimport (strings file): " .. env.MODROOT .. "strings/" .. modulename)
 	-- if string.sub(modulename, #modulename-3,#modulename) ~= ".lua" then
 		-- modulename = modulename .. ".lua"
 	-- end
-	local result = kleiloadlua(MODROOT .. "strings/" .. modulename)
+	local result = kleiloadlua(env.MODROOT .. "strings/" .. modulename)
 	if result == nil then
 		error("Error in custom import: Stringsfile " .. modulename .. " not found!")
 	elseif type(result) == "string" then
@@ -87,9 +79,9 @@ if not IsTheFrontEnd then
     for _,v in pairs(_speech) do
     	merge(STRINGS.CHARACTERS[string.upper(v)], import(v .. ".lua"))
     end
-    for _,v in pairs(_newspeech) do
-    	STRINGS.CHARACTERS[string.upper(v)] = import(v .. ".lua")
-    end
+    -- for _,v in pairs(_newspeech) do
+    -- 	STRINGS.CHARACTERS[string.upper(v)] = import(v .. ".lua")
+    -- end
 end
 
 local function printIfMissing(tia, tv, stack)
@@ -180,7 +172,7 @@ end
 
 makePOT = function()
 	--create the file
-	local file, errormsg = io.open(IAENV.MODROOT  ..  "languages/strings.pot", "w")
+	local file, errormsg = io.open(env.MODROOT  ..  "languages/strings.pot", "w")
 	if not file then print("FAILED TO GENERATE .POT:\n" ..  tostring(errormsg)) return end
 
 	--write header
@@ -195,9 +187,9 @@ makePOT = function()
 	for _,v in pairs(_speech) do
 		flattenStringsTable(import(v .. ".lua"), "STRINGS.CHARACTERS." .. string.upper(v) .. ".", _strings)
 	end
-	for _,v in pairs(_newspeech) do
-		flattenStringsTable(import(v .. ".lua"), "STRINGS.CHARACTERS." .. string.upper(v) .. ".", _strings)
-	end
+	-- for _,v in pairs(_newspeech) do
+	-- 	flattenStringsTable(import(v .. ".lua"), "STRINGS.CHARACTERS." .. string.upper(v) .. ".", _strings)
+	-- end
 
 	--write all the strings
 	for k, v in pairs(_strings) do
@@ -242,15 +234,15 @@ makePOfromLua = function(lang)
 			-- file:write('msgstr "' .. v .. '"\n\n')
 		-- end
 	-- end
-	for _,v in pairs(_newspeech) do
-		_strings = flattenStringsTable(import("temp/speech_" .. v .. "_" .. lang .. ".lua"), "STRINGS.CHARACTERS." .. string.upper(v) .. ".")
-		for k, v in pairs(_strings) do
-			file:write('#. ' .. k .. "\n")
-			file:write('msgctxt "' .. k .. '"\n')
-			file:write('msgid "' .. v .. '"\n')
-			file:write('msgstr "' .. v .. '"\n\n')
-		end
-	end
+	-- for _,v in pairs(_newspeech) do
+	-- 	_strings = flattenStringsTable(import("temp/speech_" .. v .. "_" .. lang .. ".lua"), "STRINGS.CHARACTERS." .. string.upper(v) .. ".")
+	-- 	for k, v in pairs(_strings) do
+	-- 		file:write('#. ' .. k .. "\n")
+	-- 		file:write('msgctxt "' .. k .. '"\n')
+	-- 		file:write('msgid "' .. v .. '"\n')
+	-- 		file:write('msgstr "' .. v .. '"\n\n')
+	-- 	end
+	-- end
 
 	--done
 	file:close()

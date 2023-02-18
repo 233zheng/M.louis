@@ -1,7 +1,7 @@
-name = "Louis Manutsawee compatible with ia"
+name = "M .louis compatible with ia"
 description = "[Tutorial] Making Custom Skins for Modded Characters! by Hornete\n\n[Don't edit art] \nBut you can fix bug or reupload more powerful version."
 author = "#ffffff"
-version = "2.2.8.9.2"
+version = "2.2.9"
 forumthread = ""
 
 api_version = 10
@@ -19,7 +19,8 @@ icon_atlas = "modicon.xml"
 icon = "modicon.tex"
 
 server_filter_tags = {
-"character",
+    "character",
+    "M.louis"
 }
 
 local function Header(title)

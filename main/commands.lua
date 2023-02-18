@@ -1,4 +1,4 @@
--- NOTE: debugcommands
+-- NOTE: debug commands
 GLOBAL.setfenv(1, GLOBAL)
 
 function c_allkatana()
@@ -19,6 +19,6 @@ function c_mindpower(num)
     local player = ConsoleCommandPlayer()
     if player.prefab == "manutsawee" then
         player.mindpower = num or 30
-        player.components.talker:Say("Mindpower" .. player.mindpower)
+        player.components.talker:Say("Mindpower:" .. player.mindpower)
     end
 end
