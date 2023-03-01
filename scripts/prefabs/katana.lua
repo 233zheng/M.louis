@@ -298,7 +298,7 @@ local function masterfn(inst, image, spawnnewitem, bank, build, sc_bank, swap, s
 	inst.components.finiteuses:SetOnFinished(Onfinish)
 
     inst:AddComponent("inventoryitem")
-	-- inst.components.inventoryitem.canonlygoinpocket = true
+	inst.components.inventoryitem.canonlygoinpocket = true
     inst.components.inventoryitem.imagename = image
     inst.components.inventoryitem.atlasname = "images/inventoryimages/".. image ..".xml"
     inst.components.inventoryitem:SetOnPutInInventoryFn(OnPutInInventory)
