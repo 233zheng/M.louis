@@ -790,10 +790,8 @@ local states = {
         events = {
             EventHandler("animqueueover", function(inst)
                 if inst.AnimState:AnimDone() and inst.components.health ~= nil and not inst.components.health:IsDead()
-                and not inst.sg:HasStateTag("dead")
-                then
+                and not inst.sg:HasStateTag("dead") then
                     inst.sg:GoToState("idle")
-
                 end
             end),
         },
@@ -924,7 +922,7 @@ local states = {
         },
 
         onexit = function(inst)
-            if inst.components.combat then
+            if inst.components.combat ~= nil then
                 inst.components.combat:SetTarget(nil)
                 inst.components.combat:SetRange(inst.oldrange)
             end

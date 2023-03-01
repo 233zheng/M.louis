@@ -34,7 +34,7 @@ local function Seccondmode(inst)
 	local owner = inst.components.inventoryitem.owner
 	owner.AnimState:OverrideSymbol("swap_object", "swap_mkatana", "swap_mkatana")
 
-	if not owner:HasTag("notshowscabbard") and owner:HasTag("character") then
+	if not owner:HasTag("notshowscabbard") and owner:HasTag("player") then
         owner.AnimState:OverrideSymbol("swap_body_tall", "sc_mkatana", "tail")
     end
 

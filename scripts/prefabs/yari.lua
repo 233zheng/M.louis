@@ -87,10 +87,11 @@ local function fn()
 	--inst.components.inventoryitem.canonlygoinpocket = true
 
 	inst:AddComponent("equippable")
-	inst.components.equippable:SetOnEquip( OnEquip )
-    inst.components.equippable:SetOnUnequip( OnUnequip )
+	inst.components.equippable:SetOnEquip(OnEquip)
+    inst.components.equippable:SetOnUnequip(OnUnequip)
 
-	--MakeHauntableLaunch(inst)
+	MakeHauntableLaunch(inst)
+
     return inst
 end
 

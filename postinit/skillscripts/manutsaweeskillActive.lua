@@ -703,7 +703,7 @@ local function mactiveskill(inst) --skill1
 
                         inst:RemoveTag("susanoo")
                         end)
-                    end --endskill
+                    end
                 end
             end
         end

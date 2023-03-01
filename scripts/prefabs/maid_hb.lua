@@ -68,7 +68,6 @@ local function fn()
     inst.AnimState:SetBuild("maid_hb")
     inst.AnimState:PlayAnimation("idle")
 
-
 	MakeInventoryFloatable(inst)
 	inst.components.floater:SetSize("small")
     inst.components.floater:SetVerticalOffset(0.1)

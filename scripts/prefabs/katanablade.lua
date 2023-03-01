@@ -109,7 +109,6 @@ local function fn()
         return inst
     end
 
-
     inst:AddComponent("weapon")
 	inst.components.weapon:SetDamage(TUNING.KATANA.COMMON_DMG)
 	inst.components.weapon:SetOnAttack(onattack)
@@ -132,8 +131,8 @@ local function fn()
 	--inst.components.inventoryitem.canonlygoinpocket = true
 
 	inst:AddComponent("equippable")
-	inst.components.equippable:SetOnEquip( OnEquip )
-    inst.components.equippable:SetOnUnequip( OnUnequip )
+	inst.components.equippable:SetOnEquip(OnEquip)
+    inst.components.equippable:SetOnUnequip(OnUnequip)
 	inst.components.equippable.walkspeedmult = 1.15
 
 	inst:AddComponent("workable")

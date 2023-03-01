@@ -17,7 +17,6 @@ table.insert(prefabs, CreatePrefabSkin("manutsawee_none",
 		Asset( "ANIM", "anim/manutsawee.zip" ),
 		Asset( "ANIM", "anim/ghost_manutsawee_build.zip" ),
 	},
-
 }))
 
 table.insert(prefabs, CreatePrefabSkin("manutsawee_sailor",

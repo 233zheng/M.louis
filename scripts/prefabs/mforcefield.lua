@@ -73,7 +73,6 @@ local function fn()
 
     if not TheWorld.ismastersim then
         inst:ListenForEvent("lightdirty", OnLightDirty)
-
         return inst
     end
 

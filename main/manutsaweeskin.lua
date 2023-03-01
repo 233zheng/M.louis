@@ -18,7 +18,7 @@ SKIN_AFFINITY_INFO.manutsawee = {
 	"manutsawee_miko",
 	"manutsawee_qipao",
 	"manutsawee_sailor",
-    "manutsawee_taohuu"
+    "manutsawee_taohuu",
 }
 
 PREFAB_SKINS["manutsawee"] = {
@@ -32,7 +32,7 @@ PREFAB_SKINS["manutsawee"] = {
 	"manutsawee_miko",
 	"manutsawee_qipao",
 	"manutsawee_sailor",
-    "manutsawee_taohuu"
+    "manutsawee_taohuu",
 }
 
 PREFAB_SKINS_IDS = {}

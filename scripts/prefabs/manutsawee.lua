@@ -134,7 +134,6 @@ local function PutGlasses(inst, skinname)
 end
 
 local function kenjutsuupgrades(inst)
-	-------------------
 	if inst.kenjutsulevel >= 2 and not inst:HasTag("kenjutsu") then
         inst:AddTag("kenjutsu")
     end
@@ -146,7 +145,6 @@ local function kenjutsuupgrades(inst)
     if inst.kenjutsulevel >= 5 and not inst:HasTag("manutsaweecraft2") then
         inst:AddTag("manutsaweecraft2")
     end
-	-------------------
 
 	if inst.kenjutsulevel >= 1 then
 		inst.components.sanity.neg_aura_mult = 1 - ((inst.kenjutsulevel / 2) / 10)
@@ -189,7 +187,6 @@ local function kenjutsuupgrades(inst)
 
 	MANUTSAWEE_CRIDMG = 0.1 + ((inst.kenjutsulevel / 2) / 10)
 
-	----check point
 	inst.max_mindpower = TUNING.MANUTSAWEE.MINDMAX + inst.kenjutsulevel
 
 	local fx = SpawnPrefab("fx_book_light_upgraded")
@@ -289,7 +286,7 @@ local function ondeath(inst)
 end
 
 local function onload(inst, data)
-	--if data ~= nil then
+	if data ~= nil then
 		if data.kenjutsulevel ~= nil then
             inst.kenjutsulevel = data.kenjutsulevel
         end
@@ -298,11 +295,10 @@ local function onload(inst, data)
             inst.kenjutsuexp = data.kenjutsuexp
         end
 
-		-----------------------------------------
 		if data.mindpower  ~= nil then
             inst.mindpower = data.mindpower
         end
-		-----------------------------------------
+
 		kenjutsuupgrades(inst)
 
 		if inst.kenjutsulevel > 0 and data._mlouis_health ~= nil and data._mlouis_sanity ~= nil and data._mlouis_hunger ~= nil then
@@ -319,8 +315,13 @@ local function onload(inst, data)
             inst.hairtype = data.hairtype
         end
 
+        if data.glassesstatus ~= nil then
+            inst.glassesstatus = data.glassesstatus
+        end
+
         OnChangehair(inst)
-	--end
+        PutGlasses(inst)
+	end
 end
 
 local function onsave(inst, data)
@@ -328,9 +329,8 @@ local function onsave(inst, data)
 	data.kenjutsulevel = inst.kenjutsulevel
 	data.kenjutsuexp = inst.kenjutsuexp
 
-	-----------------------------------------
 	data.mindpower = inst.mindpower
-	-----------------------------------------
+
 	data._mlouis_health = inst.components.health.currenthealth
     data._mlouis_sanity = inst.components.sanity.current
     data._mlouis_hunger = inst.components.hunger.current
@@ -338,6 +338,7 @@ local function onsave(inst, data)
 	data.hairlong = inst.hairlong
 	data.hairtype = inst.hairtype
 
+    data.glassesstatus = inst.glassesstatus
 end
 
 local nskill1 = 1
@@ -731,12 +732,13 @@ local function HairsFn(inst, skinname)	--------- change hair style
             inst:DoTaskInTime(.1, function()
                 inst:PushEvent("changehair")
             end)
+
 			inst:DoTaskInTime(1, function()
                 if inst.hairtype < #HAIR_TYPES then inst.hairtype = inst.hairtype + 1
-                OnChangehair(inst, skinname)
+                    OnChangehair(inst, skinname)
                 else
-                inst.hairtype = 1
-                OnChangehair(inst, skinname)
+                    inst.hairtype = 1
+                    OnChangehair(inst, skinname)
                 end
 			end)
 		end
@@ -885,7 +887,6 @@ local master_postinit = function(inst)
         inst.customidleanim = "idle_wanda"
     end
 
-	--------------------------------LevelKenjutsu
 	inst.kenjutsulevel = 0
 	inst.kenjutsuexp = 0
 	inst.kenjutsumaxexp = 250
@@ -910,7 +911,7 @@ local master_postinit = function(inst)
 	inst.oldrange = inst.components.combat.hitrange
 
 	--small character
-    inst.AnimState:SetScale(0.94, 0.96, 1)
+    inst.AnimState:SetScale(0.88, 0.90, 1)
 
 	--------------------HoundTarget
 	if inst.components.houndedtarget == nil then
@@ -925,18 +926,19 @@ local master_postinit = function(inst)
 	end
 
 	-- choose which sounds this character will play
-	inst.soundsname = "wortox"
+	-- inst.soundsname = "wortox"
+	inst.soundsname = "louis"
 
 	inst.components.foodaffinity:AddPrefabAffinity("baconeggs", TUNING.AFFINITY_15_CALORIES_HUGE)
-	inst.components.foodaffinity:AddPrefabAffinity("unagi", TUNING.AFFINITY_15_CALORIES_HUGE)
+	inst.components.foodaffinity:AddPrefabAffinity("unagi", TUNING.AFFINITY_15_CALORIES_TINY)
 	inst.components.foodaffinity:AddPrefabAffinity("kelp_cooked", 1)
     inst.components.foodaffinity:AddPrefabAffinity("durian", 1)
     inst.components.foodaffinity:AddPrefabAffinity("durian_cooked", 1)
 
     -- Sushi
     if TUNING.MANUTSAWEE.COMPATIBLE then
-        inst.components.foodaffinity:AddPrefabAffinity("californiaroll", TUNING.AFFINITY_15_CALORIES_HUGE)
-        inst.components.foodaffinity:AddPrefabAffinity("caviar", TUNING.AFFINITY_15_CALORIES_HUGE)
+        inst.components.foodaffinity:AddPrefabAffinity("californiaroll", TUNING.AFFINITY_15_CALORIES_TINY)
+        inst.components.foodaffinity:AddPrefabAffinity("caviar", TUNING.AFFINITY_15_CALORIES_TINY)
     end
 
 	if inst.components.beard == nil then
