@@ -200,7 +200,7 @@ local function OnCounter(inst) --counter
                 sparks.Transform:SetPosition(inst:GetPosition():Get())
                 inst.skill_target = attacker
                 inst.sg:GoToState("mcounterattack",inst.skill_target)
-                inst.components.timer:StartTimer("skillcountercd",TUNING.MANUTSAWEE.SKILLCDCT)
+                inst.components.timer:StartTimer("skillcountercd",MCONFIG.SKILLCDCT)
             else
                 _GetAttacked(self, attacker, damage, weapon, stimuli)
             end
@@ -268,7 +268,7 @@ local function mactiveskill(inst) --skill1
                     end
 
                     inst.mindpower = (inst.mindpower-3)
-                    inst.components.timer:StartTimer("skill1cd",TUNING.MANUTSAWEE.SKILLCD1)
+                    inst.components.timer:StartTimer("skill1cd",MCONFIG.SKILLCD1)
 
                     inst:RemoveTag("michimonji")
                 end	--end
@@ -312,7 +312,7 @@ local function mactiveskill(inst) --skill1
                         end)
                     end
                     inst.mindpower = (inst.mindpower-4)
-                    inst.components.timer:StartTimer("skill2cd",TUNING.MANUTSAWEE.SKILLCD2)
+                    inst.components.timer:StartTimer("skill2cd",MCONFIG.SKILLCD2)
 
                     inst:RemoveTag("mflipskill")
                 end -- end skill
@@ -376,7 +376,7 @@ local function mactiveskill(inst) --skill1
                         end)
                     end
                     inst.mindpower = (inst.mindpower-4)
-                    inst.components.timer:StartTimer("skill3cd",TUNING.MANUTSAWEE.SKILLCD3)
+                    inst.components.timer:StartTimer("skill3cd",MCONFIG.SKILLCD3)
 
                     inst:RemoveTag("mthrustskill")
                 end--end skill
@@ -477,7 +477,7 @@ local function mactiveskill(inst) --skill1
                         end)
 
                         inst.mindpower = (inst.mindpower-7)
-                        inst.components.timer:StartTimer("skillT2cd",TUNING.MANUTSAWEE.SKILLCDT2)
+                        inst.components.timer:StartTimer("skillT2cd",MCONFIG.SKILLCDT2)
 
                         inst:RemoveTag("misshin")
                     end)
@@ -505,7 +505,7 @@ local function mactiveskill(inst) --skill1
                     inst:PushEvent("heavenlystrike")
 
                     inst.mindpower = (inst.mindpower-5)
-                    inst.components.timer:StartTimer("skillT2cd", TUNING.MANUTSAWEE.SKILLCDT2-30)
+                    inst.components.timer:StartTimer("skillT2cd", MCONFIG.SKILLCDT2-30)
 
                     SpawnPrefab("mossling_spin_fx").entity:AddFollower():FollowSymbol(inst.GUID, "swap_body", 0, 0, 0)
                     SpawnPrefab("electricchargedfx").entity:AddFollower():FollowSymbol(inst.GUID, "swap_body", 0, 0, 0)
@@ -560,7 +560,7 @@ local function mactiveskill(inst) --skill1
                         inst.sg:GoToState("ryusen",inst.skill_target)
 
                         inst.mindpower = (inst.mindpower-8)
-                        inst.components.timer:StartTimer("skillT3cd",TUNING.MANUTSAWEE.SKILLCDT3-60)
+                        inst.components.timer:StartTimer("skillT3cd",MCONFIG.SKILLCDT3-60)
                         inst:RemoveTag("ryusen")
 
                         inst:DoTaskInTime(.2, function()
@@ -699,7 +699,7 @@ local function mactiveskill(inst) --skill1
                         end)
 
                         inst.mindpower = (inst.mindpower-10)
-                        inst.components.timer:StartTimer("skillT3cd",TUNING.MANUTSAWEE.SKILLCDT3)
+                        inst.components.timer:StartTimer("skillT3cd",MCONFIG.SKILLCDT3)
 
                         inst:RemoveTag("susanoo")
                         end)

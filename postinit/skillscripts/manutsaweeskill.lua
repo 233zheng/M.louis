@@ -84,7 +84,7 @@ local states = {
 			pufffx.Transform:SetScale(.3, .3, .3)
 			pufffx.Transform:SetPosition(x, y, z)
 
-            if TUNING.MANUTSAWEE.COMPATIBLE then
+            if MCONFIG.COMPATIBLE then
                 ia_SkillCollision(inst, true)
                 else
                 SkillCollision(inst, true)
@@ -106,7 +106,7 @@ local states = {
 			TimeEvent(6 * FRAMES, function(inst)
                 inst.SoundEmitter:PlaySound("dontstarve/creatures/spiderqueen/swipe")
 
-                if TUNING.MANUTSAWEE.COMPATIBLE then
+                if MCONFIG.COMPATIBLE then
                     ia_SkillCollision(inst, false)
                     else
                     SkillCollision(inst, false)

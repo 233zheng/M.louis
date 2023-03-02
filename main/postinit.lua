@@ -6,6 +6,10 @@ local postinit = {
     "player"
 }
 
+local prefab_post = {
+    "minisign"
+}
+
 local stategraphs_post = {
     "wilson",
     "wilson_client"
@@ -17,18 +21,22 @@ local skill_scripts = {
     "manutsaweeskillActive"
 }
 
-for k, v in pairs(postinit) do
+for k, v in ipairs(postinit) do
     modimport("postinit/" .. v)
 end
 
-for k, v in pairs(stategraphs_post) do
+for k, v in ipairs(prefab_post) do
+    modimport("postinit/prefabs/" .. v)
+end
+
+for k, v in ipairs(stategraphs_post) do
     modimport("postinit/stategraphs/SG".. v)
 end
 
-for k, v in pairs(skill_scripts) do
+for k, v in ipairs(skill_scripts) do
     modimport("postinit/skillscripts/".. v)
 end
 
-if TUNING.MANUTSAWEE.COMPATIBLEWITHKATANA then
-    modimport("postinit/katanarecipes")
+if MCONFIG.COMPATIBLEWITHKATANA then
+    table.insert(postinit , "katanarecipes")
 end

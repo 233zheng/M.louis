@@ -1,8 +1,13 @@
+local function en_zh(en, zh)
+    return (locale == "zh" or locale == "zhr" or locale == "zht") and zh or en
+end
+
 name = "M .louis compatible with ia"
 description = "[Tutorial] Making Custom Skins for Modded Characters! by Hornete\n\n[Don't edit art] \nBut you can fix bug or reupload more powerful version."
 author = "#ffffff"
-version = "2.2.9.2"
-forumthread = ""
+version = "2.2.9.3"
+
+forumthread = "https://steamcommunity.com/sharedfiles/filedetails/?id=2927695119"
 
 api_version = 10
 priority = -1
@@ -20,7 +25,9 @@ icon = "modicon.tex"
 
 server_filter_tags = {
     "character",
-    "M.louis"
+    "M.louis",
+    "manutsawee",
+    "Manutsawee"
 }
 
 local function Header(title)

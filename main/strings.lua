@@ -1,4 +1,4 @@
-if not TUNING.MANUTSAWEE.COMPATIBLE then
+if not MCONFIG.COMPATIBLE then
     return
 end
 

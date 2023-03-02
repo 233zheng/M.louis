@@ -1,6 +1,5 @@
 if not GLOBAL.IsInFrontEnd() then return end
 
--- I need to continue to modify here
 --变量
 local modimport = modimport
 local AddModCharacter = AddModCharacter
@@ -14,8 +13,7 @@ PrefabFiles = {
 
 --导入人物背景
 Assets = {
-
-	Asset( "IMAGE", "bigportraits/manutsawee.tex" ),
+    Asset( "IMAGE", "bigportraits/manutsawee.tex" ),
     Asset( "ATLAS", "bigportraits/manutsawee.xml" ),
 
     Asset( "IMAGE", "bigportraits/manutsawee_none.tex" ),
@@ -59,41 +57,9 @@ Assets = {
 
     Asset( "IMAGE", "images/names_gold_manutsawee.tex" ),
     Asset( "ATLAS", "images/names_gold_manutsawee.xml" ),
-
 }
 
-STRINGS.NAMES.MANUTSAWEE = "Manutsawee"
-STRINGS.SKIN_NAMES.manutsawee_none = "Manutsawee"
-STRINGS.SKIN_DESCRIPTIONS.manutsawee_none = "A Little Girl with a Big Dream."
-
-STRINGS.CHARACTER_TITLES.manutsawee = "The Sword Master"
-STRINGS.CHARACTER_ABOUTME.manutsawee = "Manutsawee is too long so just louis."
-STRINGS.CHARACTER_NAMES.manutsawee = "Manutsawee"
-STRINGS.CHARACTER_DESCRIPTIONS.manutsawee = "*Art of the Japanese sword\n*Brave\n*Benevolent"
-STRINGS.CHARACTER_QUOTES.manutsawee = "\"Where There's a Will, There's a Way\""
-
-STRINGS.CHARACTER_BIOS.manutsawee = {
-    { title = "Birthday", desc = "October 9" },
-    { title = "Favorite Food", desc = "Unagi, Bacon and Eggs, Cooked Kelp Fronds, Durian, Roasted durian" },
-    { title = "Favorite Food in IA", desc = "Californiaroll, Caviar" },
-    -- So? Who wants to think about it?
-    { title = "Her Past...", desc = "Is yet to be revealed."},
-}
-
-TUNING.MANUTSAWEE_HEALTH = 250
-TUNING.MANUTSAWEE_HUNGER = 250
-TUNING.MANUTSAWEE_SANITY = 250
-
-STRINGS.CHARACTER_SURVIVABILITY.manutsawee= "󰀕Grim"
-
-local skin_modes = {{
-    type = "ghost_skin",
-    anim_bank = "ghost",
-    idle_anim = "idle",
-    scale = 0.75,
-    offset = {0, -25}
-}}
-
+modimport("main/config")
+modimport("main/tuning")
+modimport("main/characters")
 modimport("main/manutsaweeskin")
-
-AddModCharacter("manutsawee", "FEMALE", skin_modes)

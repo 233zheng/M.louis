@@ -82,7 +82,7 @@ TECH.SCIENCE_TWO,
 {builder_tag="manutsaweecraft", atlas = "images/inventoryimages/mingot.xml", image = "mingot.tex"},
 {"CHARACTER", "REFINE"})
 
-if GetModConfigData("compatiblewithia") then
+if MCONFIG.COMPATIBLE then
     -- Surf board
     AddRecipe2("msurfboard_item",
     {Ingredient("boards", 1), Ingredient("seashell", 2)},

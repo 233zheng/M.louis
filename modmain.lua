@@ -16,14 +16,18 @@ Load "chatinputscreen"
 Load "consolescreen"
 Load "textedit"
 
+modimport("main/config")
 modimport("main/assets")
+modimport("main/atlas_build")
 modimport("main/fx")
 modimport("main/tuning")
 modimport("main/postinit")
 modimport("main/manutsaweeskin")
-modimport("main/manutsaweeitemrecipes")
-modimport("main/manutsawee_strings")
+modimport("main/recipes")
 modimport("main/containers")
 modimport("main/commands")
 modimport("main/constants")
+modimport("main/characters")
 modimport("main/strings")
+modimport("main/manutsawee_strings")
+modimport("main/rpc")

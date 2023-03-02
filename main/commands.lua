@@ -1,4 +1,4 @@
--- NOTE: debug commands
+-- @NOTE debug commands
 GLOBAL.setfenv(1, GLOBAL)
 
 function c_allkatana()

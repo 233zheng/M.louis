@@ -55,7 +55,7 @@ local function SheathInsertionMode(inst)
 	inst.AnimState:SetBank(inst.bank)
     inst.AnimState:SetBuild(inst.build)
 
-    if TUNING.MANUTSAWEE.COMPATIBLE then
+    if MCONFIG.COMPATIBLE then
         if inst.components.tool ~= nil then
             inst:RemoveComponent("tool")
         end
@@ -91,7 +91,7 @@ local function ExothecationMode(inst)
 	inst.AnimState:SetBank(inst.bank2)
     inst.AnimState:SetBuild(inst.build2)
 
-    if TUNING.MANUTSAWEE.COMPATIBLE then
+    if MCONFIG.COMPATIBLE then
         if inst.components.tool == nil then
             inst:AddComponent("tool")
             inst.components.tool:SetAction(ACTIONS.HACK, 3)

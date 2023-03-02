@@ -29,8 +29,6 @@ PrefabFiles = {
 
     "mingot",
     "mmiko_armor",
-
-    -- "sheath",
 }
 
 Assets = {
@@ -102,16 +100,6 @@ Assets = {
     Asset("ATLAS", "images/inventoryimages/maid_hb.xml"),
 }
 
-local minimapatlas = {
-    "manutsawee",
-    "raikiri",
-    "yari",
-}
-
-for k, v in ipairs(minimapatlas) do
-    AddMinimapAtlas("images/map_icons/" ..v.. ".xml")
-end
-
 if not TheNet:IsDedicated() then
 	table.insert(Assets, Asset("SOUND", "sound/louis.fsb"))
 	table.insert(Assets, Asset("SOUNDPACKAGE", "sound/louis.fev"))
@@ -120,11 +108,3 @@ end
 RemapSoundEvent("dontstarve/characters/louis/death_voice", "louis/louis/death_voice")
 RemapSoundEvent("dontstarve/characters/louis/hurt", "louis/louis/hurt")
 RemapSoundEvent("dontstarve/characters/louis/talk_LP", "louis/louis/talk_LP")
-
-if GetModConfigData("compatiblewithia") then
-    table.insert(PrefabFiles, "msurfboard")
-    table.insert(Assets, Asset("IMAGE", "images/inventoryimages/boat_msurfboard.tex"))
-    table.insert(Assets, Asset("ATLAS", "images/inventoryimages/boat_msurfboard.xml"))
-
-    table.insert(minimapatlas, "boat_msurfboard")
-end

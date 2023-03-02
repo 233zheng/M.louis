@@ -40,20 +40,14 @@ local assets = {
 
 local MANUTSAWEE_DMG = 1
 local MANUTSAWEE_CRIDMG = 0.1
-
--- Your character's stats
-TUNING.MANUTSAWEE_HEALTH = TUNING.MANUTSAWEE.HEALTH
-TUNING.MANUTSAWEE_HUNGER = TUNING.MANUTSAWEE.HUNGER
-TUNING.MANUTSAWEE_SANITY = TUNING.MANUTSAWEE.SANITY
-
 local hitcount = 0 --attackcount regen mind
 local criticalrate = 5 --critical hit rate
 
 local mstartitem = {"shinai","raikiri","shirasaya","koshirae","hitokiri","katanablade"}
 
 local start_inv = {}
-if TUNING.MANUTSAWEE.MSTARTITEM > 0 then
-    TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.MANUTSAWEE = {mstartitem[TUNING.MANUTSAWEE.MSTARTITEM]}
+if MCONFIG.MSTARTITEM > 0 then
+    TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.MANUTSAWEE = {mstartitem[MCONFIG.MSTARTITEM]}
     else
     TUNING.GAMEMODE_STARTING_ITEMS.DEFAULT.MANUTSAWEE = {}
 end
@@ -94,7 +88,7 @@ local function mindregen(inst)
 	if inst.mindpower < inst.max_mindpower/2 then
 		 mindregenfn(inst)
 	end
-	inst:DoTaskInTime(TUNING.MANUTSAWEE.MINDREGENRATE, mindregen)
+	inst:DoTaskInTime(MCONFIG.MINDREGENRATE, mindregen)
 end
 
 local HAIR_BITS = { "_cut", "_short", "_medium",  "_long" }
@@ -139,7 +133,7 @@ local function kenjutsuupgrades(inst)
     end
 
     if inst.kenjutsulevel >= 4 and inst.startregen == nil then
-        inst.startregen = inst:DoTaskInTime(TUNING.MANUTSAWEE.MINDREGENRATE, mindregen)
+        inst.startregen = inst:DoTaskInTime(MCONFIG.MINDREGENRATE, mindregen)
     end
 
     if inst.kenjutsulevel >= 5 and not inst:HasTag("manutsaweecraft2") then
@@ -154,16 +148,16 @@ local function kenjutsuupgrades(inst)
 		local health_percent = inst.components.health:GetPercent()
 		local sanity_percent = inst.components.sanity:GetPercent()
 
-		if TUNING.MANUTSAWEE.HEALTHMAX > 0 then
-            inst.components.health.maxhealth = math.ceil(TUNING.MANUTSAWEE_HEALTH + inst.kenjutsulevel * TUNING.MANUTSAWEE.HEALTHMAX)
+		if MCONFIG.HEALTHMAX > 0 then
+            inst.components.health.maxhealth = math.ceil(TUNING.MANUTSAWEE_HEALTH + inst.kenjutsulevel * MCONFIG.HEALTHMAX)
             inst.components.health:SetPercent(health_percent)
 		end
-		if TUNING.MANUTSAWEE.HUNGERMAX > 0 then
-            inst.components.hunger.max = math.ceil(TUNING.MANUTSAWEE_HUNGER + inst.kenjutsulevel * TUNING.MANUTSAWEE.HUNGERMAX)
+		if MCONFIG.HUNGERMAX > 0 then
+            inst.components.hunger.max = math.ceil(TUNING.MANUTSAWEE_HUNGER + inst.kenjutsulevel * MCONFIG.HUNGERMAX)
             inst.components.hunger:SetPercent(hunger_percent)
 		end
-		if TUNING.MANUTSAWEE.SANITYMAX > 0 then
-            inst.components.sanity.max = math.ceil(TUNING.MANUTSAWEE_SANITY + inst.kenjutsulevel * TUNING.MANUTSAWEE.SANITYMAX)
+		if MCONFIG.SANITYMAX > 0 then
+            inst.components.sanity.max = math.ceil(TUNING.MANUTSAWEE_SANITY + inst.kenjutsulevel * MCONFIG.SANITYMAX)
             inst.components.sanity:SetPercent(sanity_percent)
 		end
 	end
@@ -187,7 +181,7 @@ local function kenjutsuupgrades(inst)
 
 	MANUTSAWEE_CRIDMG = 0.1 + ((inst.kenjutsulevel / 2) / 10)
 
-	inst.max_mindpower = TUNING.MANUTSAWEE.MINDMAX + inst.kenjutsulevel
+	inst.max_mindpower = MCONFIG.MINDMAX + inst.kenjutsulevel
 
 	local fx = SpawnPrefab("fx_book_light_upgraded")
     fx.Transform:SetScale(.9, 2.5, 1)
@@ -197,17 +191,6 @@ end
 local function kenjutsulevelup(inst)
 	inst.kenjutsulevel = inst.kenjutsulevel + 1
 	kenjutsuupgrades(inst)
-end
-
-local function LevelCheckFn(inst)	-------- check level
-	if not inst.components.timer:TimerExists("checkCD") then
-        inst.components.timer:StartTimer("checkCD",.8)
-		if inst.kenjutsulevel < 10 then
-			inst.components.talker:Say("󰀍: "..inst.kenjutsulevel.." :"..inst.kenjutsuexp.."/"..inst.kenjutsumaxexp.."\n󰀈: "..inst.mindpower.."/"..inst.max_mindpower.."\n", 2, true)
-		else
-			inst.components.talker:Say("\n󰀈: "..inst.mindpower.."/"..inst.max_mindpower.."\n", 2, true)
-		end
-	end
 end
 
 local smallScale = 1
@@ -224,32 +207,28 @@ local function onkilled(inst, data)
 	end
 end
 
-local function Onattack(inst, data)	--Attack
+local function Onattack(inst, data)
 if not inst.components.rider:IsRiding() then
 	local target = data.target
 	local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
 	local tx, ty, tz = target.Transform:GetWorldPosition()
 
 	if equip ~= nil and not equip:HasTag("projectile") and not equip:HasTag("rangedweapon") then
-
-	--kenjutsulevel------------------------------------------------------------------------------------------------------------------------------------------
 		if equip:HasTag("katanaskill") and not inst.components.timer:TimerExists("HitCD") and not inst.sg:HasStateTag("skilling") then 	--GainKenExp
 			if inst.kenjutsulevel < 10 then
-                inst.kenjutsuexp = inst.kenjutsuexp + (1 * TUNING.MANUTSAWEE.KEXPMTP)
+                inst.kenjutsuexp = inst.kenjutsuexp + (1 * MCONFIG.KEXPMTP)
             end
 			inst.components.timer:StartTimer("HitCD",.5)
 		end
 
 	if inst.kenjutsuexp >= inst.kenjutsumaxexp then
         inst.kenjutsuexp = inst.kenjutsuexp - inst.kenjutsumaxexp kenjutsulevelup(inst)
-    end --OnKenLevelUp
-	--kenjutsulevelend------------------------------------------------------------------------------------------------------------------------------------------
+    end
 
-	--critical rate
 	if not ((target:HasTag("prey") or target:HasTag("bird") or target:HasTag("insect") or target:HasTag("wall")) and not target:HasTag("hostile")) then
-	if math.random(1,100) <= criticalrate + inst.kenjutsulevel and not inst.components.timer:TimerExists("CriCD") and not inst.sg:HasStateTag("skilling") then
-        inst.components.timer:StartTimer("CriCD",15 - (inst.kenjutsulevel/2))	--critical
-        local hitfx = SpawnPrefab("slingshotammo_hitfx_rock")
+        if math.random(1,100) <= criticalrate + inst.kenjutsulevel and not inst.components.timer:TimerExists("CriCD") and not inst.sg:HasStateTag("skilling") then
+            inst.components.timer:StartTimer("CriCD",15 - (inst.kenjutsulevel/2))	--critical
+            local hitfx = SpawnPrefab("slingshotammo_hitfx_rock")
             if hitfx then
                 hitfx.Transform:SetScale(.8, .8, .8)
                 hitfx.Transform:SetPosition(tx, ty, tz)
@@ -261,13 +240,12 @@ if not inst.components.rider:IsRiding() then
             end)
         end
 	end
-	--mind count
 
 	if not ((target:HasTag("prey") or target:HasTag("bird") or target:HasTag("insect") or target:HasTag("wall")) and not target:HasTag("hostile")) then
 		if not inst.components.timer:TimerExists("HeartCD") and not inst.sg:HasStateTag("skilling") and not inst.inspskill then
             inst.components.timer:StartTimer("HeartCD",.3)  --mind gain
                 hitcount = hitcount + 1
-                    if hitcount >= TUNING.MANUTSAWEE.MINDREGENCOUNT and inst.kenjutsulevel >= 1 then
+                    if hitcount >= MCONFIG.MINDREGENCOUNT and inst.kenjutsulevel >= 1 then
                         if inst.mindpower < inst.max_mindpower then
                             mindregenfn(inst)
                         else
@@ -281,11 +259,28 @@ if not inst.components.rider:IsRiding() then
     end
 end
 
-local function ondeath(inst)
+local function OnDeath(inst)
 	SkillRemove(inst)
 end
 
-local function onload(inst, data)
+local function OnSave(inst, data)
+
+	data.kenjutsulevel = inst.kenjutsulevel
+	data.kenjutsuexp = inst.kenjutsuexp
+
+	data.mindpower = inst.mindpower
+
+	data._mlouis_health = inst.components.health.currenthealth
+    data._mlouis_sanity = inst.components.sanity.current
+    data._mlouis_hunger = inst.components.hunger.current
+
+	data.hairlong = inst.hairlong
+	data.hairtype = inst.hairtype
+
+    data.glassesstatus = inst.glassesstatus
+end
+
+local function OnLoad(inst, data)
 	if data ~= nil then
 		if data.kenjutsulevel ~= nil then
             inst.kenjutsulevel = data.kenjutsulevel
@@ -317,72 +312,26 @@ local function onload(inst, data)
 
         if data.glassesstatus ~= nil then
             inst.glassesstatus = data.glassesstatus
+            if inst.glassesstatus == 0 then
+                inst.glassesstatus = 1
+                PutGlasses(inst)
+            else
+                inst.AnimState:ClearOverrideSymbol("face")
+                inst.glassesstatus = 0
+            end
         end
 
         OnChangehair(inst)
-        PutGlasses(inst)
 	end
 end
 
-local function onsave(inst, data)
-
-	data.kenjutsulevel = inst.kenjutsulevel
-	data.kenjutsuexp = inst.kenjutsuexp
-
-	data.mindpower = inst.mindpower
-
-	data._mlouis_health = inst.components.health.currenthealth
-    data._mlouis_sanity = inst.components.sanity.current
-    data._mlouis_hunger = inst.components.hunger.current
-
-	data.hairlong = inst.hairlong
-	data.hairtype = inst.hairtype
-
-    data.glassesstatus = inst.glassesstatus
-end
-
-local nskill1 = 1
-local nskill2 = 3
-local nskill3 = 4
-local nskill4 = 6
-local nskill5 = 5
-local nskill6 = 7
-local nskill7 = 8
-local ncountskill = 2
-
-local function CanUseSkill(inst, weapon)
-    inst.canuseskill = false
-    if inst.mafterskillndm ~= nil then
-        inst.mafterskillndm:Cancel()
-        inst.mafterskillndm = nil
-    end
-
-    if inst.components.health ~= nil and inst.components.health:IsDead() and (inst.sg:HasStateTag("dead") or inst:HasTag("playerghost")) or (inst.components.sleeper and inst.components.sleeper:IsAsleep()) or (inst.components.freezable and inst.components.freezable:IsFrozen()) then
-        return
-    end
-
-    if (inst.components.rider:IsRiding() or inst.components.inventory:IsHeavyLifting()) then
-        return
-    end
-
-    if weapon ~= nil then
-        if ( weapon:HasTag("projectile") or weapon:HasTag("whip") or weapon:HasTag("rangedweapon") or not (weapon:HasTag("tool") or  weapon:HasTag("sharp") or  weapon:HasTag("weapon") or  weapon:HasTag("katanaskill")) ) then
-                return
-            end
-    else
-        return
-    end
-
-    inst.canuseskill = true
-end
-
-local function cooldownskillfx(inst, fxnum)
-local fxlist = {
-    "ghostlyelixir_retaliation_dripfx",
-    "ghostlyelixir_shield_dripfx",
-    "ghostlyelixir_speed_dripfx",
-    "battlesong_instant_panic_fx",
-    "monkey_deform_pre_fx","fx_book_birds"
+local function CooldownSkillFx(inst, fxnum)
+    local fxlist = {
+        "ghostlyelixir_retaliation_dripfx",
+        "ghostlyelixir_shield_dripfx",
+        "ghostlyelixir_speed_dripfx",
+        "battlesong_instant_panic_fx",
+        "monkey_deform_pre_fx","fx_book_birds"
     }
     local fx = SpawnPrefab(fxlist[fxnum])
     fx.Transform:SetScale(.9, .9, .9)
@@ -396,352 +345,39 @@ local function OnTimerDone(inst, data)
 
         if name == "skill1cd" then
             fxnum = 1
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
 
         if name == "skill2cd" then
             fxnum = 2
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
 
         if name == "skill3cd" then
             fxnum = 3
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
 
         if name == "skillcountercd" then
             fxnum = 4
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
 
         if name == "skillT2cd" then
             fxnum = 5
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
 
         if name == "skillT3cd" then
             fxnum = 6
-            cooldownskillfx(inst,fxnum)
+            CooldownSkillFx(inst,fxnum)
             return
         end
-	end
-end
-
-local function Skill1Fn(inst) ----------  R
-    if inst.components.timer:TimerExists("sskill1cd") then
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-
-    if not inst.canuseskill then
-        return
-    end
-
-    if inst.kenjutsulevel < nskill1 then
-        inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill1, 1, true)
-        return
-    end
-
-	inst.components.timer:StartTimer("sskill1cd",1)
-
-	if inst.mindpower >= 3 then
-        if inst:HasTag("michimonji") or inst:HasTag("misshin") or inst:HasTag("ryusen") then
-            SkillRemove(inst) inst.components.talker:Say("Later...", 1, true)
-            return
-    elseif inst:HasTag("mflipskill") and equip and equip:HasTag("katanaskill") then
-            if inst.kenjutsulevel < nskill4 then
-                inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill4, 1, true)
-                SkillRemove(inst)
-    elseif inst.mindpower >= 7 then
-            if inst.components.timer:TimerExists("skillT2cd") then
-                inst.components.talker:Say("Tier2: Cooldown", 1, true)
-                SkillRemove(inst)
-                return
-            end
-                SkillRemove(inst)
-                inst:AddTag("misshin")
-                inst.components.combat:SetRange(3)
-                inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL4START..inst.mindpower.."/7\n ", 1, true)
-                return
-                else
-                    inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/7\n ", 1, true)
-                    SkillRemove(inst)
-                    return
-                end
-    elseif not inst:HasTag("michimonji") then
-            if inst.components.timer:TimerExists("skill1cd") then
-                inst.components.talker:Say("Cooldown", 1, true) SkillRemove(inst)
-                return
-            end
-            SkillRemove(inst)
-            inst:AddTag("michimonji")
-            inst.components.combat:SetRange(3.5)
-            inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL1START..inst.mindpower.."/3\n ", 1, true)
-        end
-	else
-        inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/3\n ", 1, true)
-        SkillRemove(inst)
-    end
-end
-
-local function Skill2Fn(inst) ----------  C
-    if inst.components.timer:TimerExists("sskill2cd") then
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-
-    if not inst.canuseskill then
-        return
-    end
-
-    if inst.kenjutsulevel < nskill2 then inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill2, 1, true)
-        return
-    end --5
-
-	inst.components.timer:StartTimer("sskill2cd",1)
-
-	if inst.mindpower >= 4 then
-        if inst:HasTag("mflipskill") or inst:HasTag("ryusen") or inst:HasTag("susanoo") then
-            SkillRemove(inst) inst.components.talker:Say("Later...", 1, true)
-            return
-    elseif inst:HasTag("michimonji") and equip and equip:HasTag("katanaskill") then
-        if inst.kenjutsulevel < nskill6 then
-            inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill6, 1, true)
-            SkillRemove(inst)
-    elseif inst.mindpower >= 8 then
-        if inst.components.timer:TimerExists("skillT3cd") then
-            inst.components.talker:Say("Tier3: Cooldown", 1, true)
-            SkillRemove(inst)
-            return
-        end
-        SkillRemove(inst)
-        inst:AddTag("ryusen")
-        inst.components.combat:SetRange(10)
-        inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL6START..inst.mindpower.."/8\n ", 1, true)
-    return
-        else
-        inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/8\n ", 1, true)
-        SkillRemove(inst)
-        return
-    end
-
-    elseif inst:HasTag("mthrustskill") and equip and equip:HasTag("katanaskill") then
-        if inst.kenjutsulevel < nskill7 then
-            inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill7, 1, true)
-            SkillRemove(inst)
-    elseif inst.mindpower >= 10 then
-        if inst.components.timer:TimerExists("skillT3cd") then
-            inst.components.talker:Say("Tier3: Cooldown", 1, true)
-            SkillRemove(inst)
-            return
-        end
-            SkillRemove(inst)
-            inst:AddTag("susanoo")
-            inst.components.combat:SetRange(3)
-            inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL7START..inst.mindpower.."/10\n ", 1, true)
-        return
-        else
-            inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/10\n ", 1, true) SkillRemove(inst)
-            return
-        end
-
-    elseif not inst:HasTag("mflipskill") then
-            if inst.components.timer:TimerExists("skill2cd") then
-                inst.components.talker:Say("Cooldown", 1, true)
-                SkillRemove(inst)
-                return
-            end
-            SkillRemove(inst)
-            inst:AddTag("mflipskill")
-            inst.components.combat:SetRange(3.5)
-            inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL2START..inst.mindpower.."/4\n ", 1, true)
-        end
-
-    else
-        inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/4\n ", 1, true)
-        SkillRemove(inst)
-    end
-end
-
-local function Skill3Fn(inst) ----------  T
-    if inst.components.timer:TimerExists("sskill3cd") then
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-    if not inst.canuseskill then
-        return
-    end
-
-    if inst.kenjutsulevel < nskill3 then
-        inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill3, 1, true)
-        return
-    end
-
-	inst.components.timer:StartTimer("sskill3cd",1)
-
-    if inst.mindpower >= 4 then
-        if inst:HasTag("heavenlystrike") or inst:HasTag("mthrustskill") or inst:HasTag("susanoo") then
-				SkillRemove(inst)
-					inst.components.talker:Say("Later...", 1, true)
-				return
-			elseif inst:HasTag("mflipskill") and equip and equip:HasTag("katanaskill") then
-				if inst.kenjutsulevel < nskill5 then
-                    inst.components.talker:Say("[UNLOCK] 󰀍: "..nskill5, 1, true)
-                    SkillRemove(inst)
-				elseif inst.mindpower >= 5 then
-                    if inst.components.timer:TimerExists("skillT2cd") then
-                        inst.components.talker:Say("Tier2: Cooldown", 1, true)
-                        SkillRemove(inst)
-                    return
-                end
-                    SkillRemove(inst)
-                    inst:AddTag("heavenlystrike")
-                    inst.components.combat:SetRange(3)
-                    inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL5START..inst.mindpower.."/5\n ", 1, true)
-                return
-					else
-                        inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/5\n ", 1, true)
-                        SkillRemove(inst)
-                    return
-                end
-			elseif not inst:HasTag("mthrustskill") then
-                if inst.components.timer:TimerExists("skill3cd") then
-                    inst.components.talker:Say("Cooldown", 1, true) SkillRemove(inst)
-                    return
-                end
-				SkillRemove(inst)
-                inst:AddTag("mthrustskill")
-                inst.components.combat:SetRange(3)
-                inst.components.talker:Say(STRINGS.MANUTSAWEESKILLSPEECH.SKILL3START..inst.mindpower.."/4\n ", 1, true)
-			end
-        else
-            inst.components.talker:Say("Not now!\n󰀈: "..inst.mindpower.."/4\n ", 1, true)
-            SkillRemove(inst)
-    end
-end
-
-local function SkillCounterAttackFn(inst) ---------- counter Z
-    if inst.components.timer:TimerExists("skillcountercd") then
-        inst.components.talker:Say("Cooldown", 1, true)
-        SkillRemove(inst)
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-
-    if not inst.canuseskill then
-        return
-    end
-
-    if inst.kenjutsulevel < ncountskill then
-        inst.components.talker:Say("[UNLOCK] 󰀍: "..ncountskill, 1, true)
-        return
-    end --1
-
-    if not inst.components.timer:TimerExists("counterCD") then
-        inst.components.timer:StartTimer("counterCD",.63)
-        SkillRemove(inst)
-        inst.sg:GoToState("counterstart")
-    end
-end
-
-local function SkillCancelFn(inst)
-    if inst.components.timer:TimerExists("cancelskillcd") then
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-    if not inst.canuseskill then
-        return
-    end
-
-    inst.components.timer:StartTimer("cancelskillcd",1)
-    SkillRemove(inst)
-    inst.components.talker:Say("Maybe next time.", 1, true)
-end
-
-local function QuickSheathFn(inst)
-    if inst.kenjutsulevel < ncountskill then
-        inst.components.talker:Say("[UNLOCK] 󰀍: "..ncountskill, 1, true)
-        return
-    end
-
-    if inst.components.timer:TimerExists("mQSCd") then
-        return
-    end
-
-    local equip = inst.components.inventory:GetEquippedItem(EQUIPSLOTS.HANDS)
-    CanUseSkill(inst, equip)
-    if not inst.canuseskill then
-        return
-    end
-	if equip and equip.wpstatus ~= nil and equip:HasTag("katanaskill") then
-		inst.components.timer:StartTimer("mQSCd",.4)
-		inst.sg:GoToState("mquicksheath")
-	end
-end
-
-local function GlassesFn(inst, skinname) -------- put glasses
-    if inst.components.health ~= nil and inst.components.health:IsDead() and inst.sg:HasStateTag("dead") or inst:HasTag("playerghost") then
-        return
-    end
-
-	if not (inst.sg:HasStateTag("doing") or inst.components.inventory:IsHeavyLifting()) then
-		if (inst.sg == nil or inst.sg:HasStateTag("idle") or inst:HasTag("idle")) and not (inst.sg:HasStateTag("moving") or inst:HasTag("moving")) and not inst.components.timer:TimerExists("GlassesCD") then
-			inst.components.timer:StartTimer("GlassesCD",1)
-
-            inst:DoTaskInTime(.1, function()
-                inst:PushEvent("putglasses")
-            end)
-
-            inst:DoTaskInTime(.6, function()
-                if inst.glassesstatus == 0 then
-                    inst.glassesstatus = 1
-                    PutGlasses(inst, skinname)
-                else
-                    inst.AnimState:ClearOverrideSymbol("face") inst.glassesstatus = 0
-                end
-			end)
-		end
-	end
-end
-
-local function HairsFn(inst, skinname)	--------- change hair style
-    if inst.components.health ~= nil and inst.components.health:IsDead() and inst.sg:HasStateTag("dead") or inst:HasTag("playerghost") then return end
-        if not (inst.sg:HasStateTag("doing") or inst.components.inventory:IsHeavyLifting()) then
-            if inst.hairlong == 1 then inst.components.talker:Say("My hair isn't long enough for this.")
-                return
-            end
-
-        if (inst.sg == nil or inst.sg:HasStateTag("idle") or inst:HasTag("idle")) and not (inst.sg:HasStateTag("moving") or inst:HasTag("moving")) and not inst.components.timer:TimerExists("HairCD") then
-            inst.components.timer:StartTimer("HairCD",1.4)
-
-            inst:DoTaskInTime(.1, function()
-                inst:PushEvent("changehair")
-            end)
-
-			inst:DoTaskInTime(1, function()
-                if inst.hairtype < #HAIR_TYPES then inst.hairtype = inst.hairtype + 1
-                    OnChangehair(inst, skinname)
-                else
-                    inst.hairtype = 1
-                    OnChangehair(inst, skinname)
-                end
-			end)
-		end
 	end
 end
 
@@ -778,16 +414,6 @@ local function OnEat(inst, food)
     end
 end
 
-AddModRPCHandler("manutsawee", "levelcheck", LevelCheckFn)
-AddModRPCHandler("manutsawee", "skill1", Skill1Fn)
-AddModRPCHandler("manutsawee", "skill2", Skill2Fn)
-AddModRPCHandler("manutsawee", "skill3", Skill3Fn)
-AddModRPCHandler("manutsawee", "skillcounterattack", SkillCounterAttackFn)
-AddModRPCHandler("manutsawee", "quicksheath", QuickSheathFn)
-AddModRPCHandler("manutsawee", "skillcancel", SkillCancelFn)
-AddModRPCHandler("manutsawee", "glasses", GlassesFn)
-AddModRPCHandler("manutsawee", "Hairs", HairsFn)
-
 local function OnMounted(inst)
     SkillRemove(inst)
 end
@@ -796,7 +422,7 @@ local common_postinit = function(inst)
 	-- Minimap icon
 	inst.MiniMapEntity:SetIcon("manutsawee.tex")
 
-    if TUNING.MANUTSAWEE.IDLEANIM then
+    if MCONFIG.IDLEANIM then
         inst.AnimState:AddOverrideBuild("player_idles_wanda")
     end
 
@@ -804,27 +430,27 @@ local common_postinit = function(inst)
 	inst:AddTag("manutsaweecraft")
 	inst:AddTag("stronggrip")
 
-	if TUNING.MANUTSAWEE.PTENT then
+	if MCONFIG.PTENT then
         inst:AddTag("pinetreepioneer")
     end
 
-    if TUNING.MANUTSAWEE.NSTICK then
+    if MCONFIG.NSTICK then
         inst:AddTag("slingshot_sharpshooter")
         inst:AddTag("pebblemaker")
     end
 
 	inst:AddComponent("keyhandler")
-	inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYLEVELCHECK, "levelcheck")
-	inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYGLASSES, "glasses")
-	inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYHAIRS, "Hairs")
+	inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYLEVELCHECK, "levelcheck")
+	inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYGLASSES, "glasses")
+	inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYHAIRS, "Hairs")
 
-	if TUNING.MANUTSAWEE.SKILL then
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSKILL1, "skill1")
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSKILL2, "skill2")
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSKILL3, "skill3")
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSKILLCOUNTERATK, "skillcounterattack")
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSQUICKSHEATH, "quicksheath")
-        inst.components.keyhandler:AddActionListener("manutsawee", TUNING.MANUTSAWEE.KEYSKILLCANCEL, "skillcancel")
+	if MCONFIG.SKILL then
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSKILL1, "skill1")
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSKILL2, "skill2")
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSKILL3, "skill3")
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSKILLCOUNTERATK, "skillcounterattack")
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSQUICKSHEATH, "quicksheath")
+        inst.components.keyhandler:AddActionListener("manutsawee", MCONFIG.KEYSKILLCANCEL, "skillcancel")
 	end
 
 end
@@ -883,32 +509,19 @@ end
 local master_postinit = function(inst)
 	inst.starting_inventory = start_inv[TheNet:GetServerGameMode()] or start_inv.default
 
-    if TUNING.MANUTSAWEE.IDLEANIM then
+    if MCONFIG.IDLEANIM then
         inst.customidleanim = "idle_wanda"
     end
 
-	inst.kenjutsulevel = 0
-	inst.kenjutsuexp = 0
-	inst.kenjutsumaxexp = 250
-
-	inst.mindpower = 0
-	inst.max_mindpower = TUNING.MANUTSAWEE.MINDMAX
-
 	--custom start level
-	if TUNING.MANUTSAWEE.MASTER then
+	if MCONFIG.MASTER then
         inst:DoTaskInTime(2, function()
-            if inst.kenjutsulevel < TUNING.MANUTSAWEE.MASTERVALUE then
-                inst.kenjutsulevel = TUNING.MANUTSAWEE.MASTERVALUE
+            if inst.kenjutsulevel < MCONFIG.MASTERVALUE then
+                inst.kenjutsulevel = MCONFIG.MASTERVALUE
                 kenjutsuupgrades(inst)
             end
         end)
     end
-
-	inst.glassesstatus = 0
-	inst.hairlong = 1
-	inst.hairtype = 1
-
-	inst.oldrange = inst.components.combat.hitrange
 
 	--small character
     inst.AnimState:SetScale(0.88, 0.90, 1)
@@ -936,7 +549,7 @@ local master_postinit = function(inst)
     inst.components.foodaffinity:AddPrefabAffinity("durian_cooked", 1)
 
     -- Sushi
-    if TUNING.MANUTSAWEE.COMPATIBLE then
+    if MCONFIG.COMPATIBLE then
         inst.components.foodaffinity:AddPrefabAffinity("californiaroll", TUNING.AFFINITY_15_CALORIES_TINY)
         inst.components.foodaffinity:AddPrefabAffinity("caviar", TUNING.AFFINITY_15_CALORIES_TINY)
     end
@@ -964,13 +577,17 @@ local master_postinit = function(inst)
 		table.insert(eater.caneat, FOODTYPE.MFRUIT)
 		eater.inst:AddTag(FOODTYPE.MFRUIT.."_eater")
 
+
 		local _TestFood = eater.TestFood
-		eater.TestFood = function(self, food, testvalues)
+
+        local function TestFood(self, food, testvalues)
 			if food and food.components.edible and food.components.edible.foodtype == FOODTYPE.MFRUIT then
 				return food.prefab == "mfruit"
 			end
 			return _TestFood(self, food, testvalues)
-		end
+        end
+
+		eater.TestFood = TestFood
 		eater:SetOnEatFn(OnEat)
 	end
 
@@ -1000,10 +617,24 @@ local master_postinit = function(inst)
 	inst.components.efficientuser:AddMultiplier(ACTIONS.HAMMER, TUNING.WES_WORKEFFECTIVENESS_MODIFIER, inst)
 	inst.components.efficientuser:AddMultiplier(ACTIONS.ATTACK, TUNING.WES_WORKEFFECTIVENESS_MODIFIER, inst)
 
-	inst.OnLoad = onload
-	inst.OnSave = onsave
+	inst.kenjutsulevel = 0
+	inst.kenjutsuexp = 0
+	inst.kenjutsumaxexp = 250
 
-	inst:ListenForEvent("death", ondeath)
+	inst.mindpower = 0
+	inst.max_mindpower = MCONFIG.MINDMAX
+
+	inst.glassesstatus = 0
+	inst.hairlong = 1
+	inst.hairtype = 1
+	inst.oldrange = inst.components.combat.hitrange
+
+    inst.PutGlasses = PutGlasses
+    inst.OnChangehair = OnChangehair
+	inst.OnLoad = OnLoad
+	inst.OnSave = OnSave
+
+	inst:ListenForEvent("death", OnDeath)
 	inst:ListenForEvent("ms_playerreroll", OnChangeChar)
 	inst:ListenForEvent("timerdone", OnTimerDone)
 	inst:ListenForEvent("onattackother", Onattack)
